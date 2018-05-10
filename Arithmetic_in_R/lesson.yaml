@@ -15,7 +15,7 @@
 - Class: cmd_question
   Output: To add two numbers, you just use the '+' operator, as in '3 + 4'. Try adding 3 and 4 on the command line.
   CorrectAnswer: 3 + 4
-  AnswerTests: omnitest(correctExpr='3 + 4')
+  AnswerTests: any_of_exprs('3 + 4', '4 + 3')
   Hint: Just type '3 + 4' without quotation marks.
 
 - Class: cmd_question
@@ -27,7 +27,7 @@
 - Class: cmd_question
   Output: Multiplying numbers uses the '*' operator. Multiply 3 and 4 on the command line.
   CorrectAnswer: 3 * 4
-  AnswerTests: omnitest(correctExpr='3*4')
+  AnswerTests: any_of_exprs('3*4', '4*3')
 
 - Class: cmd_question
   Output: Dividing numbers uses the '/' operator. Like subtraction, order 
@@ -37,9 +37,9 @@
   Hint: Remember that order matters. The numerator comes before the denominator.
 
 - Class: cmd_question
-  Output: Some arithmetic operations don't result in a number. Try dividing 1 by 0.
+  Output: Some arithmetic operations don't result in a number. Try dividing a whole number by 0.
   CorrectAnswer: 1 / 0
-  AnswerTests: omnitest(correctExpr='1/0')
+  AnswerTests: omnitest(correctVal='Inf')
   Hint: It's OK. You won't break the computer. Just type '1 / 0' without the quotations.
 
 - Class: text
@@ -87,7 +87,8 @@
           The square root of two is an irrational number (like pi) that has no end. In
           R, you get a truncated version of the number. If asked to give an answer to
           two decimal places, you are further truncating the number. What is the square 
-          root of two in R?
+          root of two in R? (You can use the up arrow to bring up your last equation on 
+          the command line and then edit it.)
   CorrectAnswer: sqrt(2)
   AnswerTests: omnitest(correctExpr='sqrt(2)')
   Hint: Type 'sqrt(2)' without the quotation marks.
@@ -104,16 +105,16 @@
         you are subtracting the second number from the first.
 
 - Class: cmd_question
-  Output: Find the sum of the numbers 1 through 4.
-  CorrectAnswer: 1 + 2 + 3 + 4
-  AnswerTests: omnitest(correctExpr='1+2+3+4')
-  Hint: Sum is the same as addition. The phrase 'the numbers 1 through 4' 
-        means the integers (or whole numbers) 1, 2 , 3, and 4.
+  Output: Find the sum of the numbers 1 through 3.
+  CorrectAnswer: 1 + 2 + 3
+  AnswerTests: any_of_exprs('1+2+3','3+2+1','1+3+2','3+1+2','2+1+3','2+3+1')
+  Hint: Sum is the same as addition. The phrase 'the numbers 1 through 3' 
+        means the integers (or whole numbers) 1, 2, and 3.
 
 - Class: cmd_question
   Output: Find the product of eleven and twelve.
   CorrectAnswer: 11 * 12
-  AnswerTests: omnitest(correctExpr='11*12')
+  AnswerTests: any_of_exprs('11*12', '12*11')
   Hint: Product is the same as multiplication.
 
 - Class: text
@@ -126,7 +127,7 @@
 - Class: cmd_question
   Output: Find the sum of the numbers 6 through 9 using a function.
   CorrectAnswer: sum(6, 7, 8, 9)
-  AnswerTests: omnitest(correctExpr='sum(6, 7, 8, 9)')
+  AnswerTests: omnitest(correctVal = 30, expr_uses_func('sum'))
   Hint: Type 'sum(6, 7, 8, 9)' without the quotation marks.
 
 - Class: cmd_question
