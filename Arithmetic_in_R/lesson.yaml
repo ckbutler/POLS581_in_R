@@ -1,0 +1,156 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Arithmetic in R 
+  Author: Christopher K. Butler
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: Your basic calculator can add, substract, multiply, and divide. Many
+          basic calculators can also square a number and find the square root of a
+          number. In this lesson, you will learn how to do these basic calculations in
+          R. We will also explore related concepts.
+
+- Class: cmd_question
+  Output: To add two numbers, you just use the '+' operator, as in '3 + 4'. Try adding 3 and 4 on the command line.
+  CorrectAnswer: 3 + 4
+  AnswerTests: omnitest(correctExpr='3 + 4')
+  Hint: Just type '3 + 4' without quotation marks.
+
+- Class: cmd_question
+  Output: Subtracting numbers similarly uses the '-' operator. Subtract 3 from 4 on the command line.
+  CorrectAnswer: 4 - 3
+  AnswerTests: omnitest(correctExpr='4-3')
+  Hint: Remember not to use quotation marks and that order matters.
+
+- Class: cmd_question
+  Output: Multiplying numbers uses the '*' operator. Multiply 3 and 4 on the command line.
+  CorrectAnswer: 3 * 4
+  AnswerTests: omnitest(correctExpr='3*4')
+
+- Class: cmd_question
+  Output: Dividing numbers uses the '/' operator. Like subtraction, order 
+          matters. Find 24 divided by 6.
+  CorrectAnswer: 24 / 6
+  AnswerTests: omnitest(correctExpr='24/6')
+  Hint: Remember that order matters. The numerator comes before the denominator.
+
+- Class: cmd_question
+  Output: Some arithmetic operations don't result in a number. Try dividing 1 by 0.
+  CorrectAnswer: 1 / 0
+  AnswerTests: omnitest(correctExpr='1/0')
+  Hint: It's OK. You won't break the computer. Just type '1 / 0' without the quotations.
+
+- Class: text
+  Output: The 'Inf' answer to the previous question stands for 'infinity'. You 
+          will also see this written as an 8 on its side, as in ∞.
+
+- Class: cmd_question
+  Output: Similarly, some operations don't have a defined answer. Try dividing zero by itself.
+  CorrectAnswer: 0 / 0
+  AnswerTests: omnitest(correctExpr='0/0')
+  Hint: Just type '0 / 0' without the quotation marks.
+
+- Class: text
+  Output: The 'NaN' answer stands for 'not a number'. This is important to 
+          remember when reading data sets or generating a new variable.
+
+- Class: cmd_question
+  Output: A basic calculator can square a number. This is the same as raising 
+          a number to the second power. For example, three squared is the same as 3
+          raised to the second power, or '3 ^ 2'. Find five squared.
+  CorrectAnswer: 5 ^ 2
+  AnswerTests: omnitest(correctExpr='5^2')
+  Hint: Type '5 ^ 2' without the quotation marks.
+
+- Class: cmd_question
+  Output: Recall that order matters in exponents. 3 ^ 2 is not the same as 2 ^ 3. 
+          (Read this as 'Three squared is not the same as two cubed.') Out of curiosity,
+          if you flip a penny, a nickle, a dime, and a quarter, how many patterns of 
+          heads and tails are there?
+  CorrectAnswer: 2 ^ 4
+  AnswerTests: omnitest(correctExpr='2^4')
+  Hint: There are two to the fourth power possibilities, or '2 ^ 4'.
+
+- Class: cmd_question
+  Output: The last basic calculator operation is the square root. On the one 
+          hand, you could type '9 ^ (1/2)', but this is somewhat combersome. So, let's
+          use a function. The sqrt() function can be used to find the square root of 
+          a number. Find the square root of 9 using this function.
+  CorrectAnswer: sqrt(9)
+  AnswerTests: omnitest(correctExpr='sqrt(9)')
+  Hint: Type 'sqrt(9)' without the quotation marks.
+
+- Class: cmd_question
+  Output: Computers give answers only to some specified degree of precision.
+          The square root of two is an irrational number (like pi) that has no end. In
+          R, you get a truncated version of the number. If asked to give an answer to
+          two decimal places, you are further truncating the number. What is the square 
+          root of two in R?
+  CorrectAnswer: sqrt(2)
+  AnswerTests: omnitest(correctExpr='sqrt(2)')
+  Hint: Type 'sqrt(2)' without the quotation marks.
+
+- Class: text
+  Output: Sometimes the wording of arithmetic questions takes a second to sink 
+          in. Work through these next questions to make sure you understand terminology.
+
+- Class: cmd_question
+  Output: Find the difference of 23 and 17.
+  CorrectAnswer: 23 - 17
+  AnswerTests: omnitest(correctExpr='23-17')
+  Hint: Difference is the same as subtraction. There is a presumption that 
+        you are subtracting the second number from the first.
+
+- Class: cmd_question
+  Output: Find the sum of the numbers 1 through 4.
+  CorrectAnswer: 1 + 2 + 3 + 4
+  AnswerTests: omnitest(correctExpr='1+2+3+4')
+  Hint: Sum is the same as addition. The phrase 'the numbers 1 through 4' 
+        means the integers (or whole numbers) 1, 2 , 3, and 4.
+
+- Class: cmd_question
+  Output: Find the product of eleven and twelve.
+  CorrectAnswer: 11 * 12
+  AnswerTests: omnitest(correctExpr='11*12')
+  Hint: Product is the same as multiplication.
+
+- Class: text
+  Output: As with square root, there are also functions for arithmetic. The 
+          sum() function can be used to add up a series (or array) of numbers
+          separated by commas. For example, sum(1, 2, 3, 4) is the same as 1 + 2 + 3 + 4.
+          The prod() function can be used to find the product of an array of numbers. 
+          For example, prod(11, 12) is the same as 11 * 12.
+
+- Class: cmd_question
+  Output: Find the sum of the numbers 6 through 9 using a function.
+  CorrectAnswer: sum(6, 7, 8, 9)
+  AnswerTests: omnitest(correctExpr='sum(6, 7, 8, 9)')
+  Hint: Type 'sum(6, 7, 8, 9)' without the quotation marks.
+
+- Class: cmd_question
+  Output: Find the product of the fractions one-half, two-thirds, and 
+          three-quarters using a function.
+  CorrectAnswer: prod(1/2, 2/3, 3/4)
+  AnswerTests: omnitest(correctExpr='prod(1/2, 2/3, 3/4)')
+  Hint: Type 'prod(1/2, 2/3, 3/4)' without the quotation marks. If you tried 
+        using decimals, such as 'prod(0.5, 0.67, 0.75)', notice that the answer is 
+        not quite the same.
+
+- Class: cmd_question
+  Output: We've implicitly added the use of parentheses. For some calculations,
+          parentheses are absolutely necessary. For example, find the difference of nine
+          and two divided by three.
+  CorrectAnswer: (9 - 2) / 3
+  AnswerTests: omnitest(correctExpr='(9-2)/3')
+  Hint: Note that we're not looking for the difference of nine and two-thirds, 
+        which would be calculated as '9 - 2/3'. Instead, we need to take the difference
+        first, which requires parentheses around the subtraction. You can use 
+        the up arrow to bring up your last equation on the command line and then edit it.
+
+- Class: text
+  Output: There are more mathematical operators in R. There is a convenient 
+          listing at https://www.statmethods.net/management/operators.html. There are
+          also a variety of mathematical and other functions in R, some of which you 
+          can see at https://www.statmethods.net/management/functions.html.
