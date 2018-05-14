@@ -1,0 +1,105 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Chi Squared
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: BEFORE STARTING, please note that this lesson requires the "gmodels" and "Kendall" libraries to proceed. Make sure that these libraries are installed before proceeding!
+
+- Class: text
+  Output: This lesson will show you how to set up and perform a chi-squared test. The chi-squared test is a basic statistical operations for comparing categorical data. From your Table of Bivariate Tests handout, you'll see that you can use the chi-squared test to examine the relationships between dichotomous, ordinal, and nominal variables. In this lesson, we'll set up and perform dichotomous-by-dichotomous and ordinal-by-ordinal tests using data from the 2012 General Social Survey.
+
+- Class: text
+  Output: Note that this lesson has automatically imported data from the General Social Survey into a dataframe called "gss." You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the "Loading Data" lesson in this course.
+
+- Class: cmd_question
+  Output: First, we need to select two dichotomous variables for analysis. Luckily, we have alread picked two for you! The independent variable, sex, indicates the respondent's biological sex. To view the "sex" variable, type "gss$sex." The dollar sign symbol indicates that we'd like to view the "sex" variable inside the "gss" dataframe object.
+  CorrectAnswer: gss$sex
+  AnswerTests: any_of_exprs('gss$sex')
+  Hint: Type gss$sex to view the sex variable.
+
+- Class: cmd_question
+  Output: In your console, you will see a long list of ones and twos. One (1) indicates that the respondent is male, while two (2) indicates that the respondent is female. To perform the chi-squared test correctly, we'd prefer that the variable be coded as zero (0) and one (1) --- indicating "not female" and "female." To recode the variable, type "gss$female <- gss$sex - 1." This subtracts one (1) from the "sex" variable and stores it in a new variable in the dataframe called "female." Enter the command below.
+  CorrectAnswer: gss$female <- gss$sex - 1
+  AnswerTests: any_of_exprs('gss$female <- gss$sex - 1')
+  Hint: Type gss$female <- gss$sex - 1 to recode the variable.
+
+- Class: cmd_question
+  Output: The dependent variable you will use for this lesson is "vote08," which indicates whether the respondent voted in 2008 or not. In this case, one (1) is "voted," while two (2) is "did not vote." Again, we'd prefer to have the variable coded zero (0) and one (1)! Recalling what we learned above, enter "gss$vote08 <- gss$vote08 -1" to recode the variable and store it in the original "vote08" variable name. Unlike the previous example, this recode action does not create a new variable --- instead, it overwrites the old "vote08" variable with a new coding.
+  CorrectAnswer: gss$vote08 <- gss$vote08 - 1
+  AnswerTests: any_of_exprs('gss$vote08 <- gss$vote08 - 1')
+  Hint: Type gss$vote08 <- gss$vote08 - 1 to recode the variable.
+
+- Class: cmd_question
+  Output: Now that our two variables are coded properly, let's look at a cross-tabulation of them. A cross-tab shows the number (and sometimes proportion) of observations that fall into each category (female and voted, female and did not vote, male and voted, male and did not vote). In base R, we can use the "table()" function for this. Enter "table(gss$vote08, gss$female" below to create a new cross-tab of these two variables.
+  CorrectAnswer: table(gss$vote08, gss$female)
+  AnswerTests: any_of_exprs('table(gss$vote08, gss$female')
+  Hint: Type table(gss$vote08, gss$female) to create the table.
+
+- Class: cmd_question
+  Output: While we succeeded in creating a cross-tab, it isn't very informative, is it? Because we just recoded our variables, we know that the number '564' in the first cell corresponds to zero (0) and zero (0), or men who voted. But it's very easy to get confused about which variable the column or row corresponds to. Luckily, we can generate a more informative table using the "gmodels" package. Note that this package is outside of base R and we must install and load it ourselves. Load the "gmodels" package using "library(gmodels)."
+  CorrectAnswer: library(gmodels)
+  AnswerTests: any_of_exprs('library(gmodels')
+  Hint: Type library(gmodels) to load the necessary library.
+
+- Class: cmd_question
+  Output: With the "gmodels" library loaded, let's construct a fancier table using the same two variables. The "gmodels" library provides us access to the "CrossTable" function. To create a cross-tab with this function, simply enter "CrossTable(gss$vote08, gss$female" below.
+  CorrectAnswer: CrossTable(gss$vote08, gss$female)
+  AnswerTests: any_of_exprs('CrossTable(gss$vote08, gss$female)')
+  Hint: Type CrossTable(gss$vote08, gss$female) to create the table.
+
+- Class: text
+  Output: Wow! That table provided way more information. The "Cell Contents" table at the top is the key to interpreting all of the numbers in each cell --- row proportions, column proportions, and table proportions. This seems like overkill, no? All we're really after is a table with a chi-squared test! The output is the result of a number of default options int the "CrossTable()" function. When you use the function with just the "gss$vote08" and "gss$female" inputs, the function assumes that you want all these proportions included. We need to set them to "FALSE" in the function.
+
+- Class: cmd_question
+  Output: To get a simpler table with just the chi-squared test, we must include the following options in the "CrossTable()" function --- "CrossTable(gss$vote08, gss$female, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE)." That's a long command! You'll note that it excludes expected probabilities, table proportions, row proportions, and chi-squared proportions, while keeping column proportions and the chi-squared test itself. Enter this long command below to view the output.
+  CorrectAnswer: CrossTable(gss$vote08, gss$female, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE)
+  AnswerTests: any_of_exprs('CrossTable(gss$vote08, gss$female, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE)')
+  Hint: Type the long command "CrossTable(gss$vote08, gss$female, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE)" to create the table.
+
+- Class: text
+  Output: That's better. This is the basic table that we'll use to conduct and interpret chi-squared tests for two dichotomous variables. It provides column and row totals, as well as the chi-squared value and p-value for the Pearson's chi-squared test.
+
+- Class: mult_question
+  Output: In class, you learned how to interpret the chi-squared test. Is this test significant? 
+  AnswerChoices: Yes; No
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal='No')
+  Hint: Is the p-value less than 0.05?
+
+- Class: text
+  Output: This simply chi-squared test allows us to examine the relationship between two dichotomous variables. Our example showed that there was no significant relationship between a respondent's sex and whether or not they voted in 2008. However, we can also use the chi-squared test to examine the relationship between two ordinal variables. 
+
+- Class: text
+  Output: An ordinal variable is a categorical variable with a meaningful ordering between the categories. Again, we've picked out two variables to use in this example. First, the independent variable, "attend3" indicates the frequency of the respondent's church attendance. The variable categories are one (1) or "low," two (2) or "medium," and three (3) or "high." Second, the dependent variable, "natsci," indicates the respondent's opinion about the level of governmental support for scientific research. Possible categories are one (1) or "too little," two (2) or "about right," and three (3) or "too much." Neither of our variables need to be recoded, so we can proceed with the chi-squared test.
+
+- Class: cmd_question
+  Output: Remember the long command that used the "CrossTable()" function from before? We can reuse that command with the new ordinal variables to perform a chi-squared test. Simply replace the first two inputs in the "CrossTable()" function with the proper variable names and enter below, like so --- "CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE"
+  CorrectAnswer: CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE
+  AnswerTests: any_of_exprs('CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE')
+  Hint: Type the long command "CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE" to create the table.
+
+- Class: mult_question
+  Output: Again, we see the same basic table as before, with three categories in the rows and columns for "attend3" and "natsci." Also included is the same chi-squared value and p-value for the Pearson's chi-squared test. Is this test significant?
+  AnswerChoices: Yes; No
+  CorrectAnswer: Yes
+  AnswerTests: omnitest(correctVal='Yes')
+  Hint: Is the p-value less than 0.05?
+
+- Class: cmd_question
+  Output: Ordinal-by-ordinal chi-squared tests require additional interpretation, however. We need to calculate Kendall's tau coefficient, a statistic used to measure the relationship between two ranked variables. While we could manually calculate the statistic in base R, it is far easier to use an external library, "Kendall." Load the Kendall library now with "library(Kendall)."
+  CorrectAnswer: library(Kendall)
+  AnswerTests: any_of_exprs('library(Kendall')
+  Hint: Type library(Kendall) to load the necessary library.
+
+- Class: cmd_question
+  Output: To calculate Kendall's tau, simply call the "Kendall()" function with the two ordinal variables of interest. Type "Kendall(gss$attend3, gss$natsci)" below.
+  CorrectAnswer: Kendall(gss$attend4, gss$natsci)
+  AnswerTests: any_of_exprs('Kendall(gss$attend4, gss$natsci)')
+  Hint: Type Kendall(gss$attend4, gss$natsci) to calculate Kendall's tau.
+
+- Class: test
+  Output: This lesson has shwon you how to set up and perform a chi-squared test in R. We set up and performed dichotomous-by-dichotomous and ordinal-by-ordinal tests using data from the 2012 General Social Survey. Please feel free to revisit this lesson at any time to practice setting up, performing, and interpreting chi-squared tests.
