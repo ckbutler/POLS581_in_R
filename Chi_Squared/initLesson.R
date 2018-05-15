@@ -6,14 +6,4 @@
 # library(Kendall)
 # library(gmodels)
 
-# .get_course_path <- function() {
-# 	tryCatch(swirl::swirl_courses_dir(),
-# 		error = function(c) {file.path(find.package("swirl"),
-# 			"Courses")}
-# 		)
-# }
-
-# gss <- read.csv(file.path(.get_course_path(), 
-# 	"Swirl_Lessons", "Chi_Squared", "gss2012_subset.csv"))
-
-gss <- read.csv("gss2012_subset.csv")
+gss <- read.csv(file.path(find.package("swirl"), "Courses","POLS581_in_R","Chi_Squared","gss2012_subset.csv"))
