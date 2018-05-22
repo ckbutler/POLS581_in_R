@@ -1,0 +1,112 @@
+- Class: meta
+  Course: POLS581 in R
+  Lesson: The RStudio Workspace
+  Author: Colin M. Henry (Adapted from David Kane)
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: In this lesson, you'll learn how to examine your local workspace in RStudio and begin to explore the file system of your computer. Because different operating systems (Windows, MacOS, and so on) have different conventions with regards to things like file paths, the outputs of these commands may vary across computers. But R provides a common set of commands for interacting with files and folders, so any code you write will work across all types of computers!
+
+- Class: cmd_question
+  Output: Determine which directory your R session is using as its current working directory using getwd(). The working directory is your "place" on your computer. The current working directory is where R expects to find data or other R scripts, and where R will save your data or script by default. It's important to keep track of your working directory to keep projects like homework or research projects organized. Type getwd() below to see your current working directory.
+  CorrectAnswer: getwd()
+  AnswerTests: omnitest(correctExpr='getwd()')
+  Hint: Type getwd() to determine the current working directory.
+
+- Class: cmd_question
+  Output: List all the objects in your local workspace using ls(). As you begin importing data, generating new variables, and creating graphics, your workspace will populated with objects. Type ls() to view all the objects in your local workspace. If you just opened a new RStudio workspace and loaded this lesson, there might not be any objects in your workspace yet!
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Type ls() to view all the objects in your local workspace.
+
+- Class: cmd_question
+  Output: Let's create a new object. Assign 9 to x using x <- 9. The "<-" character is the assignment symbol. The value on the right side will be assigned or "stored" in the variable on the left side. Type x <- 9 below.
+  CorrectAnswer: x <- 9
+  AnswerTests: omnitest(correctExpr='x <- 9')
+  Hint: Type x <- 9 to assign 9 to x.
+
+- Class: cmd_question
+  Output: Now take a look at objects that are in your workspace using ls() again. You should see x, the object you just created!
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Type ls() to view all the objects in your workspace.
+
+- Class: cmd_question
+  Output: Similarly, you may list all the files in your working directory using list.files() or dir(). Type dir() to produce a list of all the files in the current working directory of R.
+  CorrectAnswer: dir()
+  AnswerTests: any_of_exprs('list.files()', 'dir()')
+  Hint: Type dir() to all the files in your working directory.
+
+- Class: cmd_question
+  Output: Keep in mind as you go through this lesson and future lessons, you can get more help with each function using the "?" command. Using "?" in conjunction with a function name opens a help window in RStudio, typically in the lower right hand pane of the workspace. Help files explain what functions do, what packages they are associated with, what type of inputs they accept, and often provide examples of usage. For example, to get help with the dir() function, type ?dir below. 
+  CorrectAnswer: ?dir
+  AnswerTests: any_of_exprs('?list.files', '?dir', 'help("list.files")', 'help("dir")')
+  Hint: Type ?dir to see the help page.
+
+- Class: text
+  Output: One of the most helpful parts of any R help file is the See Also section. This provides links to similar functions, helper functions, or similar R concepts.
+
+- Class: cmd_question
+  Output: Using the args() function on a function name is also a handy way to see what arguments a function can take. For example, use the args() function to determine the arguments to dir() by typing args(dir) below.
+  CorrectAnswer: args(dir)
+  AnswerTests: omnitest(correctExpr='args(dir)')
+  Hint: Type args(dir) to see the arguments to dir.
+
+- Class: cmd_question
+  Output: Recall from above when we asked R for the value of the current working directory with getwd() and assigned the number 9 to the variable x? Assign the value of the current working directory to a variable called "oldDir."
+  CorrectAnswer: oldDir <- getwd()
+  AnswerTests: omnitest(correctExpr='oldDir <- getwd()')
+  Hint: Type oldDir <- getwd() to assign the value of the current working 
+    directory to a variable called "oldDir."
+
+- Class: text
+  Output: We will use oldDir at the end of the lesson to move back to the place that we started. 
+
+- Class: cmd_question
+  Output: Often, you will want to create new datasets, scripts, or graphics files and organize them in your working directory. One way to do that is to create new folders from within RStudio. Use dir.create() to create a directory in the current working directory called "testDir."
+  CorrectAnswer: dir.create("testDir")
+  AnswerTests: omnitest(correctExpr='dir.create("testDir")')
+  Hint: Type dir.create("testDir") to create a directory in the current working 
+    directory called "testDir."
+
+- Class: cmd_question
+  Output: We'll do our work in this new directory and then delete it when we are done. Set your working directory to "testDir" with the setwd() command. Type setwd("testDir") below to change the working directory.
+  CorrectAnswer: setwd("testDir")
+  AnswerTests: any_of_exprs('setwd("testDir")', 'setwd("testDir/")')
+  Hint: Use setwd("testDir") to set your working directory to "testDir".
+
+- Class: text
+  Output: In general, you will want your working directory to be someplace sensible, perhaps created for the specific project that you are working on. Organizing your R files is important for keeping data, scripts, and graphics in the right place for returning to or sharing projects.
+
+- Class: cmd_question
+  Output: Notice that there isn't anything in your working directory yet. Create a file in your working directory called "myTest.R" using the file.create() function. Type file.create("myTest.R") below.
+  CorrectAnswer: file.create("myTest.R")
+  AnswerTests: omnitest(correctExpr='file.create("myTest.R")')
+  Hint: Type file.create("myTest.R") to create a new file.
+
+- Class: cmd_question
+  Output: This should be the only file in this newly created directory. Let's check this by listing all the files in the current directory again. Note that you should also see the contents of the working directory in the RStudio "Files" pane, typically in the lower right hand corner of the workspace.
+  CorrectAnswer: dir()
+  AnswerTests: any_of_exprs('list.files()', 'dir()')
+  Hint: dir() shows that the directory only contains mytest.R.
+
+- Class: cmd_question
+  Output: Another way to see if your file exists in the working directory is with the file.exists() function. Check to see if "mytest.R" exists in the working directory by typing file.exists("myTest.R") below.
+  CorrectAnswer: file.exists("myTest.R")
+  AnswerTests: omnitest(correctExpr='file.exists("myTest.R")')
+  Hint: Use file.exists("myTest.R") to check that a file exists.
+
+- Class: text
+  Output: You now have a new R script file in the current directory. That may not seem very interesting. But what if you were working with dozens of scripts, or needed to generate new files for replication? In that case, being able to programatically act on many files would be very handy. Don't forget that you can temporarily leave this and other lessons by typing play() and then return by typing nxt(). Feel free to jump in and out of lessons to try the commands you've learned.
+
+- Class: cmd_question
+  Output: Go back to your original working directory using setwd().
+  CorrectAnswer: setwd(oldDir)
+  AnswerTests: omnitest(correctExpr='setwd(oldDir)')
+  Hint: Use setwd(oldDir).
+
+- Class: text
+  Output: Make sure you delete the test directory, testDir, after you've finished. Keeping a tidy workspace and working directory will make your life much easier once you start digging deep on real life projects. In this lesson, you've learned how to change working directories, create new folders and files, find help on functions, and jump in and out lessons to test out new functions.
+

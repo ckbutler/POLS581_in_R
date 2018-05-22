@@ -1,0 +1,40 @@
+- Class: meta
+  Course: POLS581 in R
+  Lesson: Installing Packages
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: BEFORE STARTING, be sure that you have a working internet connection! Part of this lesson asks you to download and install an R package from the internet.
+
+- Class: text
+  Output: This lesson will teach you how to install, load, and examine R packages. While R comes packaged as a full-featured statistical suite, the "base" R installation can be modified to do all kinds of cool things. Installing and loading custom packages is the main way to modify base R. This lesson will show you how to install the tidyverse package. Tidyverse is really a collection of packages that share a common philosophy Moreover, it is used extensively throughout this course, so installing it now is just sensible! Visit www.tidyverse.com to learn more about this very useful collection.
+
+- Class: cmd_question
+  Output: Packages are installed with the install.packages() function. The function has the form install.packages("PACKAGE NAME"). Make sure the PACKAGE NAME input is in quotations! Enter install.packages("tidyverse") below to install the "tidyverse" package. When prompted, select the 0-Cloud mirror. Beware, installing this package could take a while!
+  CorrectAnswer: install.packages("tidyverse")
+  AnswerTests: omnitest(correctExpr='install.packages("tidyverse")')
+  Hint: Type install.packages("tidyverse").
+  
+- Class: cmd_question
+  Output: Packages you have installed are loaded with the library() function. It has the form library(PACKAGE NAME). Make sure you DON'T put the PACKAGE NAME input in quotes! You must load a package library to use functions from it. Enter library(tibble) below to load the "tibble" package. 
+  CorrectAnswer: library(tibble)
+  AnswerTests: omnitest(correctExpr="library(tibble)")
+  Hint: Type library(tibble).
+
+- Class: cmd_question
+  Output: Loading a package library gives you access to functions within the library. One way of accessing these functions is with a double-colon. For instance, "tibble::tibble()" calls the "tibble()" function from the "tibble" library. Type tibble::tibble() below to try it!
+  CorrectAnswer: tibble::tibble()
+  AnswerTests: omnitest(correctExpr="tibble::tibble()")
+  Hint: Type tibble::tibble().
+
+- Class: cmd_question
+  Output: You can also simply call the function without using the library name and the double-colon. For instance, simply "tibble()" is identical to the function above. However, when you have functions with similar names from different libraries, it can be useful to use the library name and double-colon to differentiate them. Enter the simple tibble() command below.
+  CorrectAnswer: tibble()
+  AnswerTests: omnitest(correctExpr="tibble()")
+  Hint: Type tibble().
+
+- Class: text
+  Output: You have finished the Installing Packages lesson! In this lesson, you learned how to install packages, load packages, and run commands from those packages. Visit cran.r-project.org to see all the many (12,000+!) packages you can download to expand the functionality of your R installation.
