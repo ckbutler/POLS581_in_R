@@ -1,0 +1,55 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Getting Help
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: This lesson will show you how to get help in the RStudio environment.
+
+- Class: cmd_question
+  Output: "RStudio has a large built-in help system. To launch a help page for a specific function, use the 'help()' function. It has the form 'help(<FUNCTION NAME>).' Using the console, ask for help with the 'setwd()' function. It will open an HTML page the lower right hand pane in RStudio."
+  CorrectAnswer: help(setwd)
+  AnswerTests: any_of_exprs('help(setwd)','help('setwd')')
+  Hint: "Type help(setwd)."
+
+- Class: text
+  Output: "You can also get help with a function with a question mark using the form '?<FUNCTION NAME>.'"
+
+- Class: cmd_question
+  Output: "If you're unsure about which function you need help with, use the 'apropos()' command. It has the form 'apropos('<STRING>').' The input <STRING> must be in quotation marks! It returns all functions containing the string you provided. Use it to look up functions containing 'help.'"
+  CorrectAnswer: apropos('help')
+  AnswerTests: any_of_exprs('apropos('help')')
+  Hint: "Type apropos('help')."
+
+- Class: cmd_question
+  Output: "RStudio will also provide you examples of how to use a function. The 'example()' command will return a brief example of input and output of a given function. Use it like so 'example(<FUNCTION NAME>).' Below, retrieve an example of the 'setwd()' command."
+  CorrectAnswer: example(setwd)
+  AnswerTests: any_of_exprs('example(setwd)','example('setwd')')
+  Hint: "Type example(setwd)."
+
+- Class: cmd_question
+  Output: "Some packages come pre-loaded with powerful tutorials called vignettes. To see what vignettes are available on your system, use the 'vignette()' command. It will open an HTML page the lower right hand pane in RStudio."
+  CorrectAnswer: vignette()
+  AnswerTests: any_of_exprs('vignette()')
+  Hint: "Type vignette()."
+
+- Class: cmd_question
+  Output: "To launch a vignette, note the name of the tutorial from the vignette list and then use the command 'vignette('<VIGNETTE NAME>').' Start the 'readr' vignette below. It will open an HTML page the lower right hand pane in RStudio."
+  CorrectAnswer: vignette('readr')
+  AnswerTests: any_of_exprs('vignette('readr')')
+  Hint: "Type vignette('readr')."
+
+- Class: cmd_question
+  Output: "Finally, RStudio comes pre-loaded with example data sets to practice on. Obtain a list of available datasets with the 'data()' command below."
+  CorrectAnswer: data()
+  AnswerTests: any_of_exprs('data()')
+  Hint: "Type data()."
+
+- Class: text
+  Output: "In addition to built-in help functions, you can find plenty of help for R programming on the internet. Popular and helpful sites include https://stackoverflow.com, https://community.rstudio.com, and your favorite search engine."
+
+- Class: text
+  Output: "You have finished the Getting Help lesson. In this lesson, you have learned how to get help with specific commands, find examples of functions, examine vignettes, and retrieve sample data."
