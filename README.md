@@ -1,4 +1,4 @@
-This is a swirl course repository for POLS 581 at the University of New Mexico.
+This is a swirl course repository for POLS 581 at the University of New Mexico!
 
 Instructions for beta-testing swirl lessons.
 
