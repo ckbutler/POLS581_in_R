@@ -7,40 +7,40 @@
   Version: 2.4.3
 
 - Class: text
-  Output: This lesson will show you how to get help in the RStudio environment.
+  Output: "This lesson will show you how to get help in the RStudio environment. One of the big advantages of using RStudio to write R code is the large built-in help system. RStudio can tell you how to use functions, direct you to new functions, provide extended examples, and give you access to sample data. Remember, help is your friend!"
 
 - Class: cmd_question
-  Output: "RStudio has a large built-in help system. To launch a help page for a specific function, use the 'help()' function. It has the form 'help(<FUNCTION NAME>).' Using the console, ask for help with the 'setwd()' function. It will open an HTML page the lower right hand pane in RStudio."
+  Output: "To launch a help page for a specific function, use the 'help()' function. Using the console, ask for help with the 'setwd()' function by typing 'help(setwd).' In typical setups, it will open an HTML page the lower right hand pane in RStudio."
   CorrectAnswer: help(setwd)
-  AnswerTests: any_of_exprs('help(setwd)','help('setwd')')
+  AnswerTests: any_of_exprs('help(setwd)')
   Hint: "Type help(setwd)."
 
 - Class: text
-  Output: "You can also get help with a function with a question mark using the form '?<FUNCTION NAME>.'"
+  Output: "You can also get help with a function with a question mark before the function name, like this: ?setwd."
 
 - Class: cmd_question
-  Output: "If you're unsure about which function you need help with, use the 'apropos()' command. It has the form 'apropos('<STRING>').' The input <STRING> must be in quotation marks! It returns all functions containing the string you provided. Use it to look up functions containing 'help.'"
+  Output: "If you're unsure about which function you need help with, use the 'apropos()' command. The 'apropos' command will return a list of functions containing the word you searched for---as long as you put the word you'd like to search for in quotes. For example, type 'apropos('help')' below to return all functions containing the word help."
   CorrectAnswer: apropos('help')
-  AnswerTests: any_of_exprs('apropos('help')')
-  Hint: "Type apropos('help')."
+  AnswerTests: any_of_exprs('apropos("help")')
+  Hint: 'Type apropos("help").'
 
 - Class: cmd_question
-  Output: "RStudio will also provide you examples of how to use a function. The 'example()' command will return a brief example of input and output of a given function. Use it like so 'example(<FUNCTION NAME>).' Below, retrieve an example of the 'setwd()' command."
-  CorrectAnswer: example(setwd)
-  AnswerTests: any_of_exprs('example(setwd)','example('setwd')')
-  Hint: "Type example(setwd)."
+  Output: "RStudio will also provide you with examples of how to use a function, complete with sample input and expected output. The 'example()' command will return a brief look at functions in action; it may ask you to press 'Enter' or 'Return' to navigate between examples. Type 'example(plot)' to examine the 'plot()' function. In a typical setup, you will see a few different plots open in the lower right-hand pane of RStudio."
+  CorrectAnswer: example(plot)
+  AnswerTests: any_of_exprs('example(plot)')
+  Hint: "Type example(plot)."
 
 - Class: cmd_question
-  Output: "Some packages come pre-loaded with powerful tutorials called vignettes. To see what vignettes are available on your system, use the 'vignette()' command. It will open an HTML page the lower right hand pane in RStudio."
+  Output: "Some packages come pre-loaded with powerful tutorials called vignettes, which walk you through function inputs, options, and outputs with detailed comments and sample data. To see what vignettes are available on your system, use the 'vignette()' command. In the typical configuration, this function will open an HTML page the upper left-hand viewing pane of RStudio. Type 'vignette()' below to continue."
   CorrectAnswer: vignette()
   AnswerTests: any_of_exprs('vignette()')
   Hint: "Type vignette()."
 
 - Class: cmd_question
-  Output: "To launch a vignette, note the name of the tutorial from the vignette list and then use the command 'vignette('<VIGNETTE NAME>').' Start the 'readr' vignette below. It will open an HTML page the lower right hand pane in RStudio."
-  CorrectAnswer: vignette('readr')
-  AnswerTests: any_of_exprs('vignette('readr')')
-  Hint: "Type vignette('readr')."
+  Output: "To launch a vignette, note the name of the tutorial from the vignette list and then use the 'vignette()' command with the name of the tutorial as an input in quotes. For example, to start the 'Intro2Matrix' vignette, type 'vignette('Intro2Matrix')' below. It will open a PDF in an external viewer."
+  CorrectAnswer: vignette("Intro2Matrix")
+  AnswerTests: any_of_exprs('vignette("Intro2Matrix")')
+  Hint: 'Type vignette("Intro2Matrix").'
 
 - Class: cmd_question
   Output: "Finally, RStudio comes pre-loaded with example data sets to practice on. Obtain a list of available datasets with the 'data()' command below."

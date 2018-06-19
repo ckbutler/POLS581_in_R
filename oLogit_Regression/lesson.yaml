@@ -1,0 +1,61 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Ordered Logistic Regression
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: "This lesson will show you how to set up and perform a bivariate Ordered Logistic regression. Ordered Logsitic regression is another type of regression analysis, a broader category of statistical techniques that are the bread-and-butter of quantitative social science. The Table of Bivariate Tests handout shows that you can use Ordered Logistic regression to examine the relationship between an ordinal dependent variable and a continuous independent variable. In this lesson, we'll set up and perform an ordinal-by-continuous test using data from the 'states' dataset included with [?]."
+
+- Class: text
+  Output: "Note that this lesson has automatically imported data from the 'states' dataset into a dataframe called 'states.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
+  
+- Class: cmd_question
+  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, gay_support, indicates the percentage of the US state that supports gay rights. To view the 'gay_support' variable, type 'states$gay_support' The dollar sign symbol indicates that we'd like to view the 'gay_support' variable inside the 'states' dataframe object."
+  CorrectAnswer: states$gay_support
+  AnswerTests: any_of_exprs('states$gay_support')
+  Hint: "Type states$gay_support to view the gay_support variable."
+
+- Class: cmd_question
+  Output: "In your console, you will see a long list of integers. While we can see from this output that the variable is continuous, we want to be sure that R has coded the variable as a continuous number. To check this, use the 'class()' function by typing 'class(states$gay_support).' This function will display the variable's type."
+  CorrectAnswer: class(states$gay_support)
+  AnswerTests: any_of_exprs('class(states$gay_support)')
+  Hint: "Type class(states$gay_support) to view the variable type."
+  
+- Class: cmd_question
+  Output: "In your console, you will see the word 'integer.' This means that R has coded this variable as a number. But we're not done quite yet! We should also generate some simple descriptive statistics of the variable so that we have advanced notice of any outliers or obvious patterns. While the gay_support variable only has 50 observations, your future work might included variables with hundreds, thousands, or tens of thousands of observations. Patterns won't be obvious at first glance! To generate some basic descriptive statistics, type 'summary(states$gay_support).' This function will return the minimum and maximum, mean, and median values of the variable."
+  CorrectAnswer: summary(states$gay_support)
+  AnswerTests: any_of_exprs('summary(states$gay_support)')
+  Hint: "Type summary(states$gay_support) to generate descriptive statistics for the gay_support variable."
+  
+- Class: text
+  Output: "You should always look at summary statistics and check the types of the variables that you use before inserting them into models like Ordered Logistic regression. Sometimes, R will let you run a statistical test without error even if you put in the wrong type of variable. You won't get an error message, but the results might be junk!"
+  
+- Class: cmd_question
+  Output: "We've also selected an ordered dependent variable for you, 'Religiosity3,' which indicates the level of religious adherence of a state. It is scaled from 1 to 3, with 1 indicating a low level of religiosity and 3 a high level. Type 'states$Religiosity3' below to view the dependent variable."
+  CorrectAnswer: states$Religiosity3
+  AnswerTests: any_of_exprs('states$Religiosity3')
+  Hint: "Type states$Religiosity3."
+  
+- Class: cmd_question
+  Output: "You will see a list of values ranging from 1 to 3. This isn't too descriptive, is it? We will need to make some changes to the variable before it is useful in our Ordered Logistic regression model. First, we want to turn the variable into a factor variable. This allows R to recognize each value as a discrete category, rather than a continuous value. We will store the new factor varaible in a new column in the states data frame. In the same command, we will also define the levels of the variable. We already know that the variable ranges from 1 to 3, so the levels should be 1, 2, and 3. Finally, we also want to apply descriptive labels to the levels, as the range semantically indicates low, medium, and high levels of religiosity. This will be a long command! Type 'states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))' below to create a new factor variable and store it in a new column called 'relig3_factor.'"
+  CorrectAnswer: states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))
+  AnswerTests: any_of_exprs('states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))')
+  Hint: "Type states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))."
+  
+- Class: text
+  Output: "That was a long command! Take a second to review what you typed. In the 'factor()' function, we first supplied the variable from the dataset that we want to convert into a factor, then we supplied a list using the 'c()' function of the levels of interest, and then we defined the labels for each of these levels with another list using the 'c()' function. Now, when you examine the 'relig3_factor' variable, you will see a list of the descriptive labels, rather than the numerical values."
+  
+- Class: cmd_question
+  Output: "Now that we've prepared the variables, we need to load a library to create the Ordered Logistic regression model. Because R is open source and there are lots of people creating free packages, there are a few ways to create the model. But for our purposes, we're going to use the MASS library, which contains the 'polr()' function. 'polr()' provides access to both an Ordered Logistic and Probit regression model. Don't worry about the latter. For now, we'll only use the Ordered Logistic regression modeth. Load the library by typing 'library(MASS' below."
+  CorrectAnswer: library(MASS)
+  AnswerTests: any_of_exprs('library(MASS)')
+  Hint: "Type library(MASS)."  
+
+- Class: cmd_question
+  Output: "Great! Now we're ready to create an Ordered Logistic regression model. Run an Ordered Logistic regression with the 'polr()' function. Type 'polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))' below to create a regression model for our variables of interest. Note that the dependent variable comes first, followed by a tilde ('~'), and then the independent variable. Think of this as roughly equivalent to the equation for a line, y = mx + b, where 'y' is the dependent variable, 'x' is the independent variable, and the slope, 'm', and intercept, 'b', are what the model is estimating. This function also uses the options 'Hess = TRUE,' which provides additional error correction, and 'method = c('logistic'), which tells the function to use the logstic regression method."
+  CorrectAnswer: polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))
+  AnswerTests: any_of_exprs('polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))')
+  Hint: "Type polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))."
