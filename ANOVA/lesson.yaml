@@ -1,0 +1,13 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Chi Squared
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: "BEFORE STARTING, please note that this lesson requires the 'gmodels' and 'Kendall' libraries to proceed. Make sure that these libraries are installed before proceeding!"
+
+- Class: text
+  Output: "This lesson will show you how to set up and perform an ANOVA test. The ANOVA test is a basic statistical operations for comparing categorical data. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA test to examine the relationships between continuous dependent variables and categorical independent variables. In this lesson, we'll set up and perform a test using data from the 2012 General Social Survey."

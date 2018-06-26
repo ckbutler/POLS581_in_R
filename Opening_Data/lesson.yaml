@@ -1,0 +1,10 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Opening Data
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: "This lesson will show you how to open a variety of data sources, including CSV, TSV, Excel, Stata, and plain text."

@@ -7,13 +7,13 @@
   Version: 2.4.3
 
 - Class: text
-  Output: "This lesson will show you how to set up and perform a bivariate OLS regression. OLS regression is a type of regression analysis, a broader category of statistical techniques that are the bread-and-butter of quantitative social science. From your Table of Bivariate Tests handout, you'll see that you can use OLS regression to examine the relationships between two continuous variables. In this lesson, we'll set up and perform a continuous-by-continuou test using data from the 'states' dataset included with [?]."
+  Output: "This lesson will show you how to set up and perform a bivariate OLS regression. OLS regression is a type of regression analysis, a broader category of statistical techniques that are the bread-and-butter of quantitative social science. From your Table of Bivariate Tests handout, you'll see that you can use OLS regression to examine the relationships between two continuous variables. In this lesson, we'll set up and perform a continuous-by-continuous test using data from the 'states' dataset included with [?]."
 
 - Class: text
   Output: "Note that this lesson has automatically imported data from the 'states' dataset into a dataframe called 'states.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
   
 - Class: cmd_question
-  Output: "First, we need to select two continuous variables for analysis. Of course, we have alread picked two for you! The independent variable, gay_support, indicates the percentage of the US state that supports gay rights. To view the 'gay_support' variable, type 'states$gay_support' The dollar sign symbol indicates that we'd like to view the 'gay_support' variable inside the 'states' dataframe object."
+  Output: "First, we need to select two continuous variables for analysis. Of course, we have already picked two for you! The independent variable, gay_support, indicates the percentage of the US state that supports gay rights. To view the 'gay_support' variable, type 'states$gay_support' The dollar sign symbol indicates that we'd like to view the 'gay_support' variable inside the 'states' dataframe object."
   CorrectAnswer: states$gay_support
   AnswerTests: any_of_exprs('states$gay_support')
   Hint: "Type states$gay_support to view the gay_support variable."
@@ -66,7 +66,54 @@
   Hint: "Look again. Does the scatter plot look like it 'curves'?"
   
 - Class: cmd_question
-  Output: "Great! Now we're ready to create an OLS regression model. Run an OLS regression with the 'lm()' function. Type 'lm(states$gay_support ~ states$indpct_m)' below to create a regression model for our variables of interest. Note that the dependent variable comes first, followed by a tilde ('~'), and then the independent variable. Think of this as roughly equivalent to the equation for a line, y = mx + b, where 'y' is the dependent variable, 'x' is the independent variable, and the slope, 'm', and intercept, 'b', are what the model is estimating."
-  CorrectAnswer: lm(states$gay_support ~ states$indpct_m)
-  AnswerTests: any_of_exprs('lm(states$gay_support ~ states$indpct_m)')
-  Hint: "Type lm(states$gay_support ~ states$indpct_m) to build the model."
+  Output: "Great! Now we're ready to create an OLS regression model. Run an OLS regression with the 'lm()' function. Type 'lm(gay_support ~ indpct_m, data = states)' below to create a regression model for our variables of interest. Note that the dependent variable comes first, followed by a tilde ('~'), and then the independent variable. Think of this as roughly equivalent to the equation for a line, y = mx + b, where 'y' is the dependent variable, 'x' is the independent variable, and the slope, 'm', and intercept, 'b', are what the model is estimating. Finally, we include the option 'data = states' to indicate that the variables we are modeling are included in the 'states' dataframe."
+  CorrectAnswer: lm(gay_support ~ indpct_m, data = states)
+  AnswerTests: any_of_exprs('lm(gay_support ~ indpct_m, data = states)')
+  Hint: "Type lm(gay_support ~ indpct_m, data = states) to build the model."
+
+  - Class: cmd_question
+  Output: "Calling the 'lm()' function on its own returns coefficients for the intercept and the independent variable. But notice that it doesn't return whether the model is significant, or anything else we need to interpret the results. Instead, we need  to use the assignment operator, '<-', to create a model object that we can return to later. Type 'model <- lm(gay_support ~ indpct_m, data = states)' to create an object called 'model' that contains the results of the OLS regression."
+  CorrectAnswer: model <- lm(gay_support ~ indpct_m, data = states)
+  AnswerTests: any_of_exprs('model <- lm(gay_support ~ indpct_m, data = states)')
+  Hint: "Type model <- lm(gay_support ~ indpct_m, data = states) to build the model."
+
+  - Class: cmd_question
+  Output: "The above command, like most assignment commands, produces no output. However, now that we've produced a model object, we can apply all sorts of other functions to it to generate interesting results or visualizations. For instance, we can get a general impression of the the OLS regression model using the 'summary()' function. Type 'summary(model)' below to generate output with residuals, coefficients, indicators of statistical significance, and R-squared statistic, and more."
+  CorrectAnswer: summary(model)
+  AnswerTests: any_of_exprs('summary(model)')
+  Hint: "Type summary(model) to view the model."
+
+- Class: mult_question
+  Output: "Great! In the coefficients section of the output, the p-values of the intercept and independent variable of interest are in the column marked 'Pr(>|t|).' Is the independent variable statistically significant?"
+  AnswerChoices: Yes; No
+  CorrectAnswer: Yes
+  AnswerTests: omnitest(correctVal='Yes')
+  Hint: "Look again. What is the p-value for the independent variable, 'indpct_m'?"
+
+  - Class: cmd_question
+  Output: "Good news! Our model describes a statistically significant relationship. Because the intercept is greater than zero and significant at the p < 0.01 level, we can say that as the percentage of independents in a state increases, support for gay rights also increases. Furthermore, we can say that as the percentage of independents increases by 0.48% (the value of the coefficient), support for gay rights increases by 1%. But we're not done yet! As with most statistical modeling techniques, the creation of the model itself is not nearly as important as adequately preparing the data during the pre-estimation phase and running diagnostic tests in the post-estimation phase. One action you should always take post-estimation for OLS regression is an examination of the residuals, or errors. An error is the difference between an observed value of the dependent variable and a corresponding value of the dependent variable predicted by the model. In other words, the model will predict the expected level of support for gay rights in each state, and the error value is the difference between that prediction and the actual, observed level of gay rights in the original survey. Let's begin by taking a look at the predicted values. Type 'model$fitted.values' below to return a list of the predicted values stored in the model object."
+  CorrectAnswer: model$fitted.values
+  AnswerTests: any_of_exprs('model$fitted.values')
+  Hint: "Type model$fitted.values to view the predicted values."
+
+  - Class: cmd_question
+  Output: "Our model says that the first state on the list (Vermont, somewhat confusingly) should have 60.81% of the population in favor of gay rights. The model predicts this value solely on the basis of the percentage of independent voters in the state. Of course, there are plenty of other factors that could contribute to support for gay rights: religiosity, social conservatism, age, education, and so forth. Thus, we shouldn't expect this prediction to be perfect. Let's take a quick look at our original data to see Vermont's actual level of support for gay rights. While we could go back and look at the 'states' dataframe, let's keep working with the model object. Access the original data that the model is based on by typing 'model$model' below. This will create a long list in your output window --- you might have to scroll up to see the first observation."
+  CorrectAnswer: model$model
+  AnswerTests: any_of_exprs('model$model')
+  Hint: "Type model$model to view the observed values."
+
+  - Class: cmd_question
+  Output: "The observed data tells us that 65% of the population of Vermont is in favor of gay rights. Without using the R console, we can already see that the model prediction is off by about 4%. That might not seem like much, but we can only really know how good the predictive power of the model is in the context of all the errors. If there is one error value that is very large, for instance, it might indicate a big outlier that is skewing our results. In other words, if Vermont actually has support for gay rights in the high 90s but our model predicts that only about 50% of the population will support gay rights, then that observation is problem for our model. One useful way to examine all of the errors as a whole is to check if they are normally distributed. Again, we turn to the 'hist()' function to generate a histogram. Type 'hist(model$residuals)' below to generate histogram of the errors, which the modeling function has already generated for us."
+  CorrectAnswer: hist(model$residuals)
+  AnswerTests: any_of_exprs('hist(model$residuals)')
+  Hint: "Type hist(model$residuals) to view a histogram of the errors."
+
+- Class: mult_question
+  Output: "Are the errors (about) normally distributed?"
+  AnswerChoices: Yes; No
+  CorrectAnswer: Yes
+  AnswerTests: omnitest(correctVal='Yes')
+  Hint: "Compare the histogram to a normal distribution from class."
+
+- Class: text
+  Output: "With the errors looking about normally distributed, we can say with some confidence that our model reveals a direct, or positive, relationship between the percentage of independents and the percentage of support for gay rights in a state. Moreover, we can say that for every half-percent increase in independent voters, support for gay rights increases by 1%. In this lesson, you learned how to evaluate variables for use in an OLS regression, set up the regression model, and explore post-estimation diagnostics. Please feel free to revisit this lesson at any time to practice setting up, performing, and interpreting OLS regression models."

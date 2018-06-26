@@ -1,0 +1,10 @@
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Data Cleaning
+  Author: Colin M. Henry
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: "This lesson will show you how to clean a variety of data sources, including CSV, TSV, Excel, Stata, and plain text."

@@ -103,3 +103,4 @@
 
 - Class: test
   Output: "This lesson has shwon you how to set up and perform a chi-squared test in R. We set up and performed dichotomous-by-dichotomous and ordinal-by-ordinal tests using data from the 2012 General Social Survey. Please feel free to revisit this lesson at any time to practice setting up, performing, and interpreting chi-squared tests."
+  

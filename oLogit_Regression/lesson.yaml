@@ -1,6 +1,6 @@
 - Class: meta
   Course: Swirl Lessons
-  Lesson: Ordered Logistic Regression
+  Lesson: oLogit Regression
   Author: Colin M. Henry
   Type: Standard
   Organization: University of New Mexico
@@ -49,7 +49,7 @@
   Output: "That was a long command! Take a second to review what you typed. In the 'factor()' function, we first supplied the variable from the dataset that we want to convert into a factor, then we supplied a list using the 'c()' function of the levels of interest, and then we defined the labels for each of these levels with another list using the 'c()' function. Now, when you examine the 'relig3_factor' variable, you will see a list of the descriptive labels, rather than the numerical values."
   
 - Class: cmd_question
-  Output: "Now that we've prepared the variables, we need to load a library to create the Ordered Logistic regression model. Because R is open source and there are lots of people creating free packages, there are a few ways to create the model. But for our purposes, we're going to use the MASS library, which contains the 'polr()' function. 'polr()' provides access to both an Ordered Logistic and Probit regression model. Don't worry about the latter. For now, we'll only use the Ordered Logistic regression modeth. Load the library by typing 'library(MASS' below."
+  Output: "Now that we've prepared the variables, we need to load a library to create the Ordered Logistic regression model. Because R is open source and there are lots of people creating free packages, there are a few ways to create the model. But for our purposes, we're going to use the MASS library, which contains the 'polr()' function. 'polr()' provides access to both an Ordered Logistic and Probit regression model. Don't worry about the latter. For now, we'll only use the Ordered Logistic regression model. Load the library by typing 'library(MASS)' below."
   CorrectAnswer: library(MASS)
   AnswerTests: any_of_exprs('library(MASS)')
   Hint: "Type library(MASS)."  
@@ -59,3 +59,5 @@
   CorrectAnswer: polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))
   AnswerTests: any_of_exprs('polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))')
   Hint: "Type polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))."
+
+
