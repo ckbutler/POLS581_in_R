@@ -1,13 +1,28 @@
 - Class: meta
   Course: Swirl Lessons
-  Lesson: Chi Squared
+  Lesson: ANOVA
   Author: Colin M. Henry
   Type: Standard
   Organization: University of New Mexico
   Version: 2.4.3
 
 - Class: text
-  Output: "BEFORE STARTING, please note that this lesson requires the 'gmodels' and 'Kendall' libraries to proceed. Make sure that these libraries are installed before proceeding!"
+  Output: "This lesson will show you how to set up and perform an ANOVA test. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA, or Analysis of Variance, test to examine the relationship between continuous dependent variables and categorical independent variables. In this lesson, we'll set up and perform a test using data from the 2012 General Social Survey."
 
 - Class: text
-  Output: "This lesson will show you how to set up and perform an ANOVA test. The ANOVA test is a basic statistical operations for comparing categorical data. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA test to examine the relationships between continuous dependent variables and categorical independent variables. In this lesson, we'll set up and perform a test using data from the 2012 General Social Survey."
+  Output: "Note that this lesson has automatically imported data from the 'gss' dataset into a dataframe called 'gss.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
+
+- Class: cmd_question
+  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, 'relig', indicates the religion of the respondent. To view the 'relig' variable, type 'gss$relig' The dollar sign symbol indicates that we'd like to view the 'relig' variable inside the 'gss' dataframe object."
+  CorrectAnswer: gss$relig
+  AnswerTests: any_of_exprs('gss$relig')
+  Hint: "Type gss$relig to view the relig variable."
+
+- Class: cmd_question
+  Output: "You will see a list of values ranging from 1 to 13. This isn't too descriptive, is it? We will need to make some changes to the variable before it is useful in our ANOVA test. First, we want to turn the variable into a factor variable. This allows R to recognize each value as a discrete category, rather than a continuous value. We will store the new factor varaible in a new column in the gss data frame. In the same command, we will also define the levels of the variable. We already know that the variable ranges from 1 to 13, so the levels should be 1, 2, 3, and so on through 13. Finally, we also want to apply descriptive labels to the levels, as the range semantically indicates the following religions, in order: Protestant, Catholic, Jewish, None, Other, Buddhism, Hundusim, Other Eastern, Islam, Orthodox-Christian, Christian, Native American, and Inter-nondenominational. This will be a long command! In any other context, we'd likely combine some of these categories together for ease of interpretation. For now, however, we'll enter the whole long command. Type 'gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))' below to create a new factor variable and store it in a new column called 'relig_factor.'"
+  CorrectAnswer: gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))
+  AnswerTests: any_of_exprs('gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))')
+  Hint: "Type gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))."
+  
+- Class: text
+  Output: "That was a long command! Take a second to review what you typed. In the 'factor()' function, we first supplied the variable from the dataset that we want to convert into a factor, then we supplied a list using the 'c()' function of the levels of interest, and then we defined the labels for each of these levels with another list using the 'c()' function. Now, when you examine the 'relig_factor' variable, you will see a list of the descriptive labels, rather than the numerical values."
