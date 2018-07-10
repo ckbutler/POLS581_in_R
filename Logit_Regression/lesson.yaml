@@ -10,7 +10,7 @@
   Output: "This lesson will show you how to set up and perform a bivariate Logistic regression. Logsitic regression is another type of regression analysis, a broader category of statistical techniques that are the bread-and-butter of quantitative social science. The Table of Bivariate Tests handout shows that you can use Logistic regression to examine the relationship between a dummy dependent variable and a continuous independent variable. In this lesson, we'll set up and perform a dummy-by-continuous test using data from the 'gss' dataset included with [?]."
 
 - Class: text
-  Output: "Note that this lesson has automatically imported data from the 'gss' dataset into a dataframe called 'gss.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
+  Output: "Note that this lesson has automatically imported data from the 'gss' dataset into a dataframe called 'gss.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course. Moreover, we will be using the 'ggplot2' library, which you should install BEFORE starting the lesson. If you have previously installed the 'tidyverse' library collection, 'ggplot2' is installed on your system."
   
 - Class: cmd_question
   Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, age, indicates the age of the respondent. To view the 'age' variable, type 'gss$age' The dollar sign symbol indicates that we'd like to view the 'age' variable inside the 'gss' dataframe object."
@@ -38,18 +38,12 @@
   CorrectAnswer: gss$cappun
   AnswerTests: any_of_exprs('gss$cappun')
   Hint: "Type gss$cappun."
-  
-- Class: cmd_question
-  Output: "You will see a list of values ranging from 1 to 2, with a '1' indicating opposition for the death penalty, and a '2' indicating support. There are two problems with how the variable is currently coded. First, Logistic regression requires the dummy dependent variable to coded as '0' and '1', rather than some other combination of numbers. This is important for how the model is derived mathematically, although the specifics of the math will be found in a later, more advanced lesson. To recode the variable, use the following command to subtract 1 from the original variable and create 'gss$cappun_dummy' to store the result: 'gss$cappun_dummy <- gss$cappun - 1'"
-  CorrectAnswer: gss$cappun_dummy <- gss$cappun - 1
-  AnswerTests: any_of_exprs('gss$cappun_dummy <- gss$cappun - 1')
-  Hint: "Type gss$cappun_dummy <- gss$cappun - 1."
 
 - Class: cmd_question
-  Output: "Great! Now we have a new variable called 'cappun_dummy' that is coded as '0' and '1.' But we're not finished! We also want to turn the variable into a factor variable with descriptive labels. This allows R to recognize each value as a discrete category, rather than a continuous value. We will store the new factor varaible in the same column, 'cappun_dummy,' in the gss data frame. In the same command, we will also define the levels of the variable. We already know that the variable ranges from 0 to 1, so the levels should be, of course, 0 and 1. Finally, we also want to apply descriptive labels to the levels, as the range semantically indicates 'oppose' and 'support.' This will be a long command! Type 'gss$cappun_dummy <- factor(gss$cappun_dummy, levels = c(0,1), labels = c('oppose', 'support'))' below to create a new factor variable and store it in the column called 'cappun_dummy.'"
-  CorrectAnswer: gss$cappun_dummy <- factor(gss$cappun_dummy, levels = c(0,1), labels = c('oppose', 'support'))
+  Output: "We can see that the dependent variable is coded '0' and '1', with '0' indicating lack of support, and '1' the opposite. Now, we need to turn the variable into a factor variable with descriptive labels. This allows R to recognize each value as a discrete category, rather than a continuous value. We will store the new factor varaible in a new column, 'cappun_dummy,' in the gss data frame. In the same command, we will also define the levels of the variable. We already know that the variable ranges from 0 to 1, so the levels should be, of course, 0 and 1. Finally, we also want to apply descriptive labels to the levels, as the range semantically indicates 'oppose' and 'support.' This will be a long command! Type 'gss$cappun_dummy <- factor(gss$cappun_dummy, levels = c(0,1), labels = c('oppose', 'support'))' below to create a new factor variable and store it in the column called 'cappun_dummy.'"
+  CorrectAnswer: gss$cappun_dummy <- factor(gss$cappun, levels = c(0,1), labels = c('oppose', 'support'))
   AnswerTests: any_of_exprs('gss$cappun_dummy <- factor(gss$cappun, levels = c(0,1), labels = c('oppose', 'support'))')
-  Hint: "Type gss$cappun_dummy <- factor(gss$cappun_dummy, levels = c(0,1), labels = c('oppose', 'support'))."
+  Hint: "Type gss$cappun_dummy <- factor(gss$cappun, levels = c(0,1), labels = c('oppose', 'support'))."
   
 - Class: text
   Output: "That was a long command! Take a second to review what you typed. In the 'factor()' function, we first supplied the variable from the dataset that we want to convert into a factor, then we supplied a list using the 'c()' function of the levels of interest, and then we defined the labels for each of these levels with another list using the 'c()' function. Now, when you examine the 'cappun_dummy' variable, you will see a list of the descriptive labels, rather than the numerical values."
@@ -78,3 +72,18 @@
   CorrectAnswer: Yes
   AnswerTests: omnitest(correctVal='Yes')
   Hint: "Look again. What is the p-value for the independent variable, 'age'?"
+  
+- Class: cmd_question
+  Output: "Excellent work! Now, interpreting the p-value is just one way to understand what the model is telling you. As with many statistical models, we should use post-estimation tools to extract more information (and sometimes cool visuals) from the Logistic regression model. One simple way to do this is to plot the predicted values of the dependent variable, support for capital punishment, against the actual values of the independent variable, age. With this plot, we can visualize how the probability of the respondent supporting capital punishment rises as the age of the respondent rises. Let's begin by loading the 'ggplot2' library. 'ggplot2' is part of the Tidyverse, and provides a powerful set of tools for generating graphs, maps, and other data visualizations. Type 'library(ggplot2)' below to load the library."
+  CorrectAnswer: library(ggplot2)
+  AnswerTests: any_of_exprs('library(ggplot2)')
+  Hint: "Type library(ggplot2) to load the library."
+  
+  - Class: cmd_question
+  Output: "To create a simple graph, type 'ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line()' below. Don't worry too much about the structure of the ggplot() function --- visit the Data Visualization lesson for more detailed information on how to use the 'ggplot2' library and the ggplot() function. Instead, pay attention to the data input for the 'x' and 'y' axes of the graph. For the 'x' axis, we want to point the ggplot() function to the independent variable, age. Why use the age variable included in the 'model' object instead of the 'gss' data frame? Because both the 'age' and 'fitted.values' variables are created by the Logistic regression function, glm(), we used before, we can be sure that they are the same length, which is REQUIRED when using ggplot(). Keep in mind that there are many different strategies for generating post-estimation data and visualizing statistical models, and you should explore these before you decide to include visualizations in manuscripts intended for publication. Type the above command to continue. In a typical configuration of RStudio, it will produce a plot in the lower right-hand pane."
+  CorrectAnswer: ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line()
+  AnswerTests: any_of_exprs('ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line()')
+  Hint: "Type ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line() to produce the plot."
+  
+  - Class: text
+  Output: "Great work! In this lesson, you have learned how to setup, create, and explore a bivariate Logistic regression model."
