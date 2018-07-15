@@ -7,22 +7,63 @@
   Version: 2.4.3
 
 - Class: text
-  Output: "This lesson will show you how to set up and perform an ANOVA test. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA, or Analysis of Variance, test to examine the relationship between continuous dependent variables and categorical independent variables. In this lesson, we'll set up and perform a test using data from the 2012 General Social Survey."
+  Output: "This lesson will show you how to set up and perform an ANOVA test. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA, or 'One Way Analysis of Variance,' test to examine the relationship between continuous dependent variables and categorical independent variables. The ANOVA compares the means of subsets of your data. It is similar to the two-sample t-test of independent groups that you learned about in the 'T-Test' lesson. In this lesson, we'll set up and perform a test using data from [?]."
 
 - Class: text
-  Output: "Note that this lesson has automatically imported data from the 'gss' dataset into a dataframe called 'gss.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
+  Output: "Note that this lesson has automatically imported data from the 'states' dataset into a dataframe called 'states' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
 
 - Class: cmd_question
-  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, 'relig', indicates the religion of the respondent. To view the 'relig' variable, type 'gss$relig' The dollar sign symbol indicates that we'd like to view the 'relig' variable inside the 'gss' dataframe object."
-  CorrectAnswer: gss$relig
-  AnswerTests: any_of_exprs('gss$relig')
-  Hint: "Type gss$relig to view the relig variable."
-
-- Class: cmd_question
-  Output: "You will see a list of values ranging from 1 to 13. This isn't too descriptive, is it? We will need to make some changes to the variable before it is useful in our ANOVA test. First, we want to turn the variable into a factor variable. This allows R to recognize each value as a discrete category, rather than a continuous value. We will store the new factor varaible in a new column in the gss data frame. In the same command, we will also define the levels of the variable. We already know that the variable ranges from 1 to 13, so the levels should be 1, 2, 3, and so on through 13. Finally, we also want to apply descriptive labels to the levels, as the range semantically indicates the following religions, in order: Protestant, Catholic, Jewish, None, Other, Buddhism, Hundusim, Other Eastern, Islam, Orthodox-Christian, Christian, Native American, and Inter-nondenominational. This will be a long command! In any other context, we'd likely combine some of these categories together for ease of interpretation. For now, however, we'll enter the whole long command. Type 'gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))' below to create a new factor variable and store it in a new column called 'relig_factor.'"
-  CorrectAnswer: gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))
-  AnswerTests: any_of_exprs('gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))')
-  Hint: "Type gss$relig_factor <- factor(gss$relig, levels = c(1,2,3,4,5,6,7,8,9,10,11,12,13), labels = c('Protestant', 'Catholic', 'Jewish', 'None', 'Other', 'Buddhism', 'Hundusim', 'Other Eastern', 'Islam', 'Orthodox-Christian', 'Christian', 'Native American', 'Inter-nondenominational'))."
+  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, 'region', indicates the region of the state. To view the 'region' variable, type 'states$region' The dollar sign symbol indicates that we'd like to view the 'region' variable inside the 'states' dataframe object."
+  CorrectAnswer: states$region
+  AnswerTests: any_of_exprs('states$region')
+  Hint: "Type states$region to view the states variable."
+  
+  - Class: cmd_question
+  Output: "You will see a list of 50 values ranging from 1 to 4. Each number corresponds to a region: 1 to the East, 2 to the Midwest, 3 to the South, and 4 to the West. (It's a simplistic measure --- let's not quibble over where each state belongs.) Before we can begin our analysis, we need to convert the variable into a 'factor' variable with descriptive levels. This tells R that the variable has discrete categories, and attaches descriptive name to the categories. We'll store this new factor variable in a column in the dataframe called 'region_factor.' Type 'states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))' below to create the new factor variable."
+  CorrectAnswer: states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))
+  AnswerTests: any_of_exprs('states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))')
+  Hint: "Type states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West')) to create the new factor variable."
   
 - Class: text
-  Output: "That was a long command! Take a second to review what you typed. In the 'factor()' function, we first supplied the variable from the dataset that we want to convert into a factor, then we supplied a list using the 'c()' function of the levels of interest, and then we defined the labels for each of these levels with another list using the 'c()' function. Now, when you examine the 'relig_factor' variable, you will see a list of the descriptive labels, rather than the numerical values."
+  Output: "That was a long command! Take a second to review what you typed. In the 'factor()' function, we first supplied the variable from the dataset that we want to convert into a factor, then we supplied a list using the 'c()' function of the levels of interest, and then we defined the labels for each of these levels with another list using the 'c()' function. Now, when you examine the 'region_factor' variable, you will see a list of the descriptive labels, rather than the numerical values."
+  
+  - Class: cmd_question
+  Output: "We've also selected a dependent variable for you. The dependent variable, vep12_turnout, indicates the percentage of voter turnout in the state for the 2012 federal election. To view the 'vep12_turnout' variable, type 'states$vep12_turnout' The dollar sign symbol indicates that we'd like to view the 'vep12_turnout' variable inside the 'states' dataframe object."
+  CorrectAnswer: states$vep12_turnout
+  AnswerTests: any_of_exprs('states$vep12_turnout')
+  Hint: "Type states$vep12_turnout to view the vep12_turnout variable."
+  
+  - Class: cmd_question
+  Output: "In your console, you will see a long list of numbers While we can see from this output that the variable is continuous, we want to be sure that R has coded the variable as a continuous number. To check this, use the 'class()' function by typing 'class(states$vep12_turnout).' This function will display the variable's type."
+  CorrectAnswer: class(states$vep12_turnout)
+  AnswerTests: any_of_exprs('class(states$vep12_turnout)')
+  Hint: "Type class(states$vep12_turnout) to view the variable type."
+  
+  - Class: cmd_question
+  Output: "In your console, you will see the word 'numeric' This means that R has coded this variable as a number with a decimal place. But we're not done quite yet! We should also generate some simple descriptive statistics of the variable so that we have advanced notice of any outliers or obvious patterns. To generate some basic descriptive statistics, type 'summary(states$vep12_turnout).' This function will return the minimum and maximum, mean, and median values of the variable. Also note that the 'NA' column will show you how many observations are missing from your dataset, if any." 
+  CorrectAnswer: summary(states$vep12_turnout)
+  AnswerTests: any_of_exprs('summary(states$vep12_turnout)')
+  Hint: "Type summary(states$vep12_turnout) to generate descriptive statistics for the vep12_turnout variable."
+  
+  - Class: text
+  Output: "You should always look at summary statistics and check the types of the variables that you use before inserting them into models like Multinomial Logistic regression. Sometimes, R will let you run a statistical test without error even if you put in the wrong type of variable. You won't get an error message, but the results might be junk!"
+  
+  - Class: cmd_question
+  Output: "Now we're ready to run an ANOVA test. This test will examine the relationship between the region of the state and voter turnout in the 2012 election: do different regions have statistically different rates of turnout? Running the test has several steps. First, we need to create a general linear model of the data using the lm() function. Type 'oneway <- lm(vep12_turnout ~ region_factor, data = states)' below to create a model for our variables of interest. Note that the dependent variable comes first, followed by a tilde ('~'), and then the independent variable. Think of this as roughly equivalent to the equation for a line, y = mx + b, where 'y' is the dependent variable, 'x' is the independent variable, and the slope, 'm', and intercept, 'b', are what the model is estimating. This function also uses the option 'data = states', which tells the function to use the 'states' data frame. Finally, we are using the assignment operator, '<-', to store the model in a new object called 'oneway.'"
+  CorrectAnswer: oneway <- lm(vep12_turnout ~ region_factor, data = states)
+  AnswerTests: any_of_exprs('oneway <- lm(vep12_turnout ~ region_factor, data = states)')
+  Hint: "Type oneway <- lm(vep12_turnout ~ region_factor, data = states)."
+  
+  - Class: cmd_question
+  Output: "With the model created, we can now run an ANOVA test on the results using the anova() function. Type 'anova(oneway)' to apply the function to the model we created above. Note the p-value for our variable of interest in the column labeled 'Pr(>F)'."
+  CorrectAnswer: anova(oneway)
+  AnswerTests: any_of_exprs('anova(oneway)')
+  Hint: "Type anova(oneway)."
+  
+  - Class: mult_question
+  Output: "Great! Is the independent variable statistically significant? In other words, does the test tell us that there is a statistically significant difference in 2012 voter turnout between different regions of the country?"
+  AnswerChoices: Yes; No
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal='No')
+  Hint: "Look again. What is the p-value, in the column Pr(>F), for the independent variable, 'region_factor'?"
+  

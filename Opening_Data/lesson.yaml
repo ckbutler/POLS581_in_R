@@ -7,4 +7,82 @@
   Version: 2.4.3
 
 - Class: text
-  Output: "This lesson will show you how to open a variety of data sources, including CSV, TSV, Excel, Stata, and plain text."
+  Output: "This lesson will show you how to open a variety of data sources, including CSV, TSV, Excel, and Stata. During this lesson, you will be asked to import a variety of libraries, including [?]. Please make sure you've installed these libraries BEFORE starting the lesson."
+
+- Class: text
+  Output: "With the assistance of external, third-party libraries, R can handle a wide variety of data formats. If you ever find yourself with an exotic dataset and are unsure if R can import and interpret it, the answer is probably yes! But the process of importing it may be different than opening and importing other more familiar types of data --- make sure you use a search engine or a reference site like StackOverflow (www.stackoverflow.com) to look for information on how to handle it."
+  
+  - Class: cmd_question
+  Output: "In this lesson, we'll be importing a variety of very common data formats. The first is CSV, or comma-separated values, a favorite of data scientists everywhere. CSV files are denoted by the .csv file extension. To open a CSV file, use the 'read.csv()' function. For example, type 'csv_data <- read.csv('https://www.dropbox.com/s/jo0gmt3nz0e14x8/gss2012_subset.csv')' below to import the 2012 General Social Survey dataset from the class Dropbox folder into a new dataframe object called 'csv_data.' Note that the function needs to know where to look for the file; in this case, we used a web address, but you could also include the name of a local file as long as it is in your working directory on your computer."
+  CorrectAnswer: csv_data <- read.csv('https://www.dropbox.com/s/jo0gmt3nz0e14x8/gss2012_subset.csv')
+  AnswerTests: any_of_exprs("csv_data <- read.csv('https://www.dropbox.com/s/jo0gmt3nz0e14x8/gss2012_subset.csv')")
+  Hint: "Type csv_data <- read.csv('https://www.dropbox.com/s/jo0gmt3nz0e14x8/gss2012_subset.csv') to import the dataset."
+  
+  - Class: cmd_question
+  Output: "If you are working in the default RStudio window, you will see a new object called 'csv_data' in the Global Environment panel in the top right This means that your data import was successful! Type 'View(csv_data)' to open the imported dataset in the top left panel."
+  CorrectAnswer: View(csv_data)
+  AnswerTests: any_of_exprs('View(csv_data)')
+  Hint: "Type View(csv_data) to view the dataset."
+  
+  - Class: cmd_question
+  Output: "Finally, type 'class(csv_data)' below to see that the read.csv() function created a dataframe object by default. Dataframes are the core data structures of statistical analysis in R, and we'd like to import data into the dataframe object type as often as possible. But keep in mind that other import functions might create different types of objects by default!"
+  CorrectAnswer: class(csv_data)
+  AnswerTests: any_of_exprs('class(csv_data)')
+  Hint: "Type class(csv_data) to check the type of object."
+  
+  - Class: cmd_question
+  Output: "The second data format to examine is TSV, or tab-separated values, denoted by the .tsv file extension. A TSV file is just like a CSV file, but observations are separated by tabs instead of commas. TSVs are common among older datasets, geographic data, climate data, and other fields that social scientists borrow from. To open a TSV file, use the 'read.delim()' function. For example, type 'tsv_data <- read.delim('https://www.dropbox.com/s/5f6c9jbtdr5ckjv/gss2012_subset.tsv', sep = '\t')' below to import the 2012 General Social Survey dataset from the class Dropbox folder into a new dataframe object called 'tsv_data' Again we are using a web address, but you could also include the name of a local file as long as it is in your working directory on your computer. Also, this function requires you to specify what type of seperator, or delimiter, is used by the dataset to separate observations. Here we use the '\t' character, which is how the computer understands a tab."
+  CorrectAnswer: tsv_data <- read.delim('https://www.dropbox.com/s/5f6c9jbtdr5ckjv/gss2012_subset.tsv', sep = '\t')
+  AnswerTests: any_of_exprs("tsv_data <- read.delim('https://www.dropbox.com/s/5f6c9jbtdr5ckjv/gss2012_subset.tsv', sep = '\t')")
+  Hint: "Type tsv_data <- read.delim('https://www.dropbox.com/s/5f6c9jbtdr5ckjv/gss2012_subset.tsv', sep = '\t') to import the dataset."
+  
+  - Class: cmd_question
+  Output: "Again, you will see a new object called 'tsv_data' in the Global Environment panel in the top right This means that your data import was successful! Type 'View(tsv_data)' to open the imported dataset in the top left panel. Although the data file had a different delimiter, you'll notice that the imported dataframe is identical to 'csv_data.'"
+  CorrectAnswer: View(tsv_data)
+  AnswerTests: any_of_exprs('View(tsv_data)')
+  Hint: "Type View(tsv_data) to view the dataset."
+  
+  - Class: cmd_question
+  Output: "Another common data format is DTA, or Stata data. These files have the extension .dta, and are created by the popular statistical analysis program Stata. Stata enjoys widespread usage by social scientists in both industry and academia. You'll likely encounter .dta files when replicating published data from many top journals, collaborating with professors and graduate students, or downloading data from widely cited data projects like Uppsala's Conflict Data Program. To handle DTA files, we need an external library. Import the haven library with 'library(haven)' below."
+  CorrectAnswer: library(haven)
+  AnswerTests: any_of_exprs("library(haven)")
+  Hint: "Type library(haven) to load the library."
+  
+  - Class: cmd_question
+  Output: "Great! Now we have access to the read_dta() function from haven. Type 'dta_data <- read_dta('https://www.dropbox.com/s/zktloxzqfaoe0h5/states.dta')' to import the states.dta file and store it in a new object called 'dta_data.'"
+  CorrectAnswer: dta_data <- read_dta('https://www.dropbox.com/s/zktloxzqfaoe0h5/states.dta')
+  AnswerTests: any_of_exprs("dta_data <- read_dta('https://www.dropbox.com/s/zktloxzqfaoe0h5/states.dta')")
+  Hint: "Type dta_data <- read_dta('https://www.dropbox.com/s/zktloxzqfaoe0h5/states.dta') to import the dataset."
+  
+  - Class: cmd_question
+  Output: "Now, you will see a new object called 'dta_data' in the Global Environment panel in the top right This means that your data import was successful! But this is where things get a little more complicated. Unlike the CSV and TSV files we imported earlier, DTA files are more complex. They include not only variables and observations, but also variable labels and value labels for categorical data. Thus, when you type 'class(dta_data)' below, you will get a very different answer from the other data sets. Enter the command below to see what we mean."
+  CorrectAnswer: class(dta_data)
+  AnswerTests: any_of_exprs('class(dta_data)')
+  Hint: "Type class(dta_data) to view the dataset."
+  
+  - Class: cmd_question
+  Output: "The function returned three different types of objects! These include dataframe, which you are already familiar with; 'tbl' or a 'table,' which is a generic table of data with columns and rows; and, more importantly, 'tbl_df' or a 'tibble.' Tibbles are data objects provided by the Tidyverse group of libraries, of which haven is a part. They are similar to dataframes, but can included the extended labeling information that is commonly included with DTA files. They also have the advantage of more user-friendly printing in the console than dataframe objects. For example, simply type 'dta_data' below."
+  CorrectAnswer: dta_data
+  AnswerTests: any_of_exprs('dta_data')
+  Hint: "Type dta_data to view the dataset."
+  
+  - Class: text
+  Output: "Instead of printing the WHOLE dataframe, the tibble prints the first 10 rows of data. The columns include not only user-friendly variable names, but also the type of variable (i.e., 'dbl,' or 'double,' which indicates a numeric value). Finally, the tail of the command's output also includes information on the unprinted rows and variables."
+  
+  - Class: cmd_question
+  Output: "Finally, we need a way to import data from that old stand-by Microsoft Excel. Excel (or free alternatives like Libreoffice) produces two types of files: XLS, with the file extensions .xls; and XLSX, with the file extension .xlsx. The former are for files created in versions of Excel older than 2008, and the latter for newer versions of Excel. Luckily, we handle both! First, we need to load the library readxl, which (you probably guessed) can read Excel files. This library is also part of the Tidyverse and should be installed on your system if you have installed the whole Tidyverse package collection. Type library(readxl) below to continue."
+  CorrectAnswer: library(readxl)
+  AnswerTests: any_of_exprs("library(readxl)")
+  Hint: "Type library(readxl) to load the library."
+  
+  - Class: cmd_question
+  Output: "Great! Now we have access to the read_xls() and read_xlsx() functions from readxl. Type 'xls_data <- read_xls('https://www.dropbox.com/s/e86r05er70mua65/gss2012_subset.xls')' to import the 2012 General Social Survey dataset and store it in a new object called 'xls_data'"
+  CorrectAnswer: xls_data <- read_xls('https://www.dropbox.com/s/e86r05er70mua65/gss2012_subset.xls')
+  AnswerTests: any_of_exprs("xls_data <- read_xls('https://www.dropbox.com/s/e86r05er70mua65/gss2012_subset.xls')")
+  Hint: "Type xls_data <- read_xls('https://www.dropbox.com/s/e86r05er70mua65/gss2012_subset.xls') to import the dataset."
+  
+  - Class: text
+  Output: "Although XLS and XLSX files typically don't include the kind of extended data and labels common to DTA files, the read_xls() and read_xlsx() functions create a new tibble object on import."
+  
+  - Class: text
+  Output: "This lesson has covered how to import common types of data into R. There are plenty of exotic data types out there that haven't been covered here --- please go out and explore how to import them! If you come across something you don't know to how to read or import, remember that someone, somewhere in the open-source R community probably does."
