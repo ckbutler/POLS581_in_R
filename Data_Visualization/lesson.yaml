@@ -82,18 +82,18 @@
   CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")
   AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")')
   Hint: "Type ggplot(world, aes(world$democ11)) +
-             geom_histogram(breaks=seq(0, 10, by=1), fill="blue")."
+             geom_histogram(breaks=seq(0, 10, by=1), fill=blue). Blue needs to be in quotation marks."
 
 - Class: cmd_question
   Output: "You can also delineate each bin by outlining them in another color. Let's use red. After specifying
-          your fill color (blue), specify your outline color using 'col="red"'."
+          your fill color (blue), specify your outline color using 'col=red' (with red in quotation marks)."
   CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue"), col="red')
+  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue"), col="red")
   Hint: "Type ggplot(world, aes(world$democ11)) +
-        geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")."
+        geom_histogram(breaks=seq(0, 10, by=1), fill=blue, col=red). Put the names of colors in quotation marks."
 
 - Class: text
-  Output: "The 'col=""' specification can be used to change the color of other graphs as well. While color printing
+  Output: "The 'col=' specification can be used to change the color of other graphs as well. While color printing
           for research papers may be unnecessary, adding color can make your graphics 'pop' when presenting research
           at conferences."
 
@@ -130,33 +130,33 @@
 
 - Class: cmd_question
   Output: "Sometimes relationships can be hard to identify from scatter plots. We can plot a line of best fit
-          to make the relationship more transparent. Add '+ geom_smooth(method="lm")' to the end 
-          of your previous command."
+          to make the relationship more transparent. Add '+ geom_smooth(method=lm)' to the end 
+          of your previous command. lm needs to be in quotation marks."
   CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm")
   AnswerTests: any_of_exprs('ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm")')
-  Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
+  Hint: "You can use the up arrow to recall your previous command."
 
 - Class: text
-  Output: "Specifying 'method="lm"' indicates that you want a linear model as your line of best fit. The ggplot2
+  Output: "Specifying 'method=lm' indicates that you want a linear model as your line of best fit. The ggplot2
           package comes with many other options that you can use if you feel that a linear model is not
           appropriate. The gray bands illustrate the confidence interval. You can remove the bands by adding
           'se=FALSE' inside geom_smooth()."
 
 - Class: cmd_question
   Output: "Last but not least, all graphs should have a title to tell readers what they are looking at. This can
-          be done using labs(). Add '+ labs(title="This is a title")' to the end of your previous command."
+          be done using labs(). Add '+ labs(title=This is a title)' to the end of your previous command.
+          'This is a title' needs to be in quotation marks."
   CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title")
   AnswerTests: any_of_exprs('ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title")')
-  Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
+  Hint: "You can use the up arrow to recall your previous command."
 
 - Class: cmd_question
   Output: "The handy labs() function can also change your variables' labels on the x and y axises to make them
-          more descriptive. Inside the function, add 'x="GDP per capita (10k US)", y="Years democratic"'."
+          more descriptive. Inside the function, add 'x=GDP per capita (10k US), y=Years democratic'.
+          Your new label names need to be in quotation marks."
   CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")
   AnswerTests: any_of_exprs('ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")')
-  Hint: "ggplot(world, aes(x=gdp_10_thou, y=durable)) + 
-        geom_point() + geom_smooth(method="lm") + 
-        labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")"
+  Hint: "You can use the up arrow to recall your previous command."
 
 - Class: text
   Output: "Well that was arduous! This lesson covered the basics of data visualization, including histograms,
