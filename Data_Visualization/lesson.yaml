@@ -79,8 +79,7 @@
 - Class: cmd_question
   Output: "This graph lacks color... let's make the bins blue! Change the number of bins back to 10,
           and add 'fill="blue"' to the 'geom_histogram' part of your command. Don't forget to add a comma."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) +
-                 geom_histogram(breaks=seq(0, 10, by=1), fill="blue")
+  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")
   AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")')
   Hint: "Type ggplot(world, aes(world$democ11)) +
              geom_histogram(breaks=seq(0, 10, by=1), fill="blue")."
@@ -88,8 +87,7 @@
 - Class: cmd_question
   Output: "You can also delineate each bin by outlining them in another color. Let's use red. After specifying
           your fill color (blue), specify your outline color using 'col="red"'."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) +
-                 geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")
+  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")
   AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue"), col="red')
   Hint: "Type ggplot(world, aes(world$democ11)) +
         geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")."
@@ -147,17 +145,14 @@
 - Class: cmd_question
   Output: "Last but not least, all graphs should have a title to tell readers what they are looking at. This can
           be done using labs(). Add '+ labs(title="This is a title")' to the end of your previous command."
-  CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + 
-                 geom_point() + geom_smooth(method="lm") + labs(title="This is a title")
+  CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title")
   AnswerTests: any_of_exprs('ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title")')
   Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
 
 - Class: cmd_question
   Output: "The handy labs() function can also change your variables' labels on the x and y axises to make them
           more descriptive. Inside the function, add 'x="GDP per capita (10k US)", y="Years democratic"'."
-  CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + 
-                 geom_point() + geom_smooth(method="lm") + 
-                 labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")
+  CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")
   AnswerTests: any_of_exprs('ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")')
   Hint: "ggplot(world, aes(x=gdp_10_thou, y=durable)) + 
         geom_point() + geom_smooth(method="lm") + 
