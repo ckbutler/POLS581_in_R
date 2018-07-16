@@ -88,7 +88,7 @@
   Output: "You can also delineate each bin by outlining them in another color. Let's use red. After specifying
           your fill color (blue), specify your outline color using 'col=red' (with red in quotation marks)."
   CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue"), col="red")
+  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue"), col="red"')
   Hint: "Type ggplot(world, aes(world$democ11)) +
         geom_histogram(breaks=seq(0, 10, by=1), fill=blue, col=red). Put the names of colors in quotation marks."
 
