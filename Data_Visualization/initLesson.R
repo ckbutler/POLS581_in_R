@@ -3,4 +3,4 @@
       # the user's working directory and thus be accessible to them
       # throughout the lesson.
 
-world <- read.csv(file.path(find.package("swirl"), "Courses","POLS581_in_R","Data_Visualization","world.csv"))
+world <- read.dta(file.path(find.package("swirl"), "Courses","POLS581_in_R","Data_Visualization","world.dta"))
