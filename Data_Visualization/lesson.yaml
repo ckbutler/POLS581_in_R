@@ -78,7 +78,7 @@
 
 - Class: cmd_question
   Output: "This graph lacks color... let's make the bins blue! Change the number of bins back to 10,
-          and add 'fill="blue"' to the 'geom_histogram' part of your command. Don't forget to add a comma."
+          and add 'fill=blue' (with blue in quotation marks) to the 'geom_histogram' part of your command. Don't forget to add a comma."
   CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")
   AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")')
   Hint: "Type ggplot(world, aes(world$democ11)) +
