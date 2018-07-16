@@ -3,4 +3,6 @@
       # the user's working directory and thus be accessible to them
       # throughout the lesson.
 
+library(haven)
+
 world <- read_dta(file.path(find.package("swirl"), "Courses","POLS581_in_R","Data_Visualization","world.dta"))
