@@ -98,8 +98,9 @@
           at conferences."
 
 - Class: cmd_question
-  Output: "Histograms are not the only way to visualize data for one variable. Kernel density plots can be more
-          useful when you have continuous variables. Set up the ggplot command like a histogram, but add 
+  Output: "Histograms are not the only way to visualize data for one variable. 
+           Kernel density plots provide a useful alternative for when you have continuous variables. 
+           Set up the ggplot command like a histogram, but add 
           'geom_density' at the end instead of 'geom_histogram'. Use the variable 'cialifex' instead of 'democ11'." 
   CorrectAnswer: ggplot(world, aes(world$cialifex)) + geom_density()
   AnswerTests: any_of_exprs('ggplot(world, aes(world$cialifex)) + geom_density()')
@@ -152,8 +153,9 @@
 
 - Class: cmd_question
   Output: "The handy labs() function can also change your variables' labels on the x and y axises to make them
-          more descriptive. Inside the function, add 'x=GDP per capita (10k US), y=Years democratic'.
-          Your new label names need to be in quotation marks."
+          more descriptive. Especially when loading data from a csv format, your variables might not have useful labels.
+          Without them, readers may have difficulty understanding what you are graphing. Inside the function, 
+          add 'x=GDP per capita (10k US), y=Years democratic'. Your new label names need to be in quotation marks."
   CorrectAnswer: ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")
   AnswerTests: any_of_exprs('ggplot(world, aes(x=gdp_10_thou, y=durable)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="GDP per capita (10K US)", y="Years democratic")')
   Hint: "You can use the up arrow to recall your previous command."
