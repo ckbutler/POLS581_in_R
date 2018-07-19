@@ -46,7 +46,8 @@
  
 - Class: text
   Output: "Look at the x axis of the histogram. Its break points are 0.0, 2.5, 5.0, 7.5, and 10.0. These points
-          illustrate potential democracy scores that countries could have, while break points on the y axis
+          illustrate potential democracy scores that countries could have 
+          (0 indicates fully autocratic while 10 indicates fully democratic), while break points on the y axis
           indicate how many countries have those scores."
           
 - Class: cmd_question
@@ -60,10 +61,10 @@
 
 - Class: cmd_question
   Output: "For example, let's change the bin width of the x axis so that there are no spaces between the 
-          cut points. Using the 'cialifex' variable, add 'breaks=seq(35, 90, by=5)'
+          cut points. Using the 'cialifex' variable (average life expectancy in a country), add 'breaks=seq(35, 90, by=5)'
           inside the geom_histogram() part of the command.
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5))
-  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(0, 10, by=1))')
+  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5))')
   Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
   
 - Class: text
