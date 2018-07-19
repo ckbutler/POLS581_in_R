@@ -16,7 +16,8 @@
   Output: "To begin, you need to load the ggplot2 library."
   CorrectAnswer: library(ggplot2)
   AnswerTests: any_of_exprs('library(ggplot2)')
-  Hint: "Type 'library(ggplot2)' without quotation marks. If you have not already, you can install ggplot2 using 'install.packages'."
+  Hint: "Type 'library(ggplot2)' without quotation marks. 
+        If you have not already, you can install ggplot2 using install.packages('ggplot2')."
   
 - Class: text
   Output: "ggplot2 is based on the grammar of graphics, which is the idea that you can build every graph from the same
@@ -24,10 +25,10 @@
           of graph may change, each one derives from the same three essential parts."
           
 - Class: cmd_question
-  Output: "Let's start by making a blank graph. Type ggplot(world, aes(world$democ11))."
-  CorrectAnswer: ggplot(world, aes(world$democ11))
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11))')
-  Hint: "Type ggplot(world, aes(world$democ11)). You could even copy and paste it!"
+  Output: "Let's start by making a blank graph. Type ggplot(world, aes(democ11))."
+  CorrectAnswer: ggplot(world, aes(democ11))
+  AnswerTests: any_of_exprs('ggplot(world, aes(democ11))')
+  Hint: "Type ggplot(world, aes(democ11)). You could even copy and paste it!"
   
 - Class: text
   Output: "Now you have created a blank graph. Look at this like a canvas; once you have set up your coordinates and data, 
@@ -38,14 +39,19 @@
 - Class: cmd_question
   Output: "Let's turn that blank graph into a histogram. Take your previous command and add '+ geom_histogram()'
           to the end."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram()
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram()')
+  CorrectAnswer: ggplot(world, aes(democ11)) + geom_histogram()
+  AnswerTests: any_of_exprs('ggplot(world, aes(democ11)) + geom_histogram()')
   Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
  
 - Class: text
   Output: "Look at the x axis of the histogram. Its break points are 0.0, 2.5, 5.0, 7.5, and 10.0. These points
           illustrate potential democracy scores that countries could have, while break points on the y axis
           indicate how many countries have those scores."
+          
+- Class: cmd_question
+  Output: "Let's practice using another variable. This time, make a histogram using the 'cialifex' variable.
+  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram()')
+  Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command and add your new variable." 
           
 - Class: text
   Output: "You can make a histogram and other plots using commands other than ggplot, and some of which are much simpler.
@@ -55,8 +61,8 @@
   Output: "For example, let's change the bin width of the x axis so that the graph looks less messy 
           (observe the spacing between 3 and 5, for example). In the 'geom_histogram()' part of your command, 
           add 'breaks=seq(0, 10, by=1)'."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1))
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1))')
+  CorrectAnswer: ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=1))
+  AnswerTests: any_of_exprs('ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=1))')
   Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
   
 - Class: text
@@ -65,8 +71,8 @@
 
 - Class: cmd_question
   Output: "For additional practice, repeat the previous command using 'by=2'."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=2))
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=2))')
+  CorrectAnswer: ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=2))
+  AnswerTests: any_of_exprs('ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=2))')
   Hint: "From your previous command, change 'by=1' to 'by=2'. Remember not to use quotation marks."
   
 - Class: text
@@ -79,17 +85,17 @@
 - Class: cmd_question
   Output: "This graph lacks color... let's make the bins blue! Change the number of bins back to 10,
           and add 'fill=blue' (with blue in quotation marks) to the 'geom_histogram' part of your command. Don't forget to add a comma."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")')
-  Hint: "Type ggplot(world, aes(world$democ11)) +
+  CorrectAnswer: ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")
+  AnswerTests: any_of_exprs('ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue")')
+  Hint: "Type ggplot(world, aes(democ11)) +
              geom_histogram(breaks=seq(0, 10, by=1), fill=blue). Blue needs to be in quotation marks."
 
 - Class: cmd_question
   Output: "You can also delineate each bin by outlining them in another color. Let's use red. After specifying
           your fill color (blue), specify your outline color using 'col=red' (with red in quotation marks)."
-  CorrectAnswer: ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")')
-  Hint: "Type ggplot(world, aes(world$democ11)) +
+  CorrectAnswer: ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")
+  AnswerTests: any_of_exprs('ggplot(world, aes(democ11)) + geom_histogram(breaks=seq(0, 10, by=1), fill="blue", col="red")')
+  Hint: "Type ggplot(world, aes(democ11)) +
         geom_histogram(breaks=seq(0, 10, by=1), fill=blue, col=red). Put the names of colors in quotation marks."
 
 - Class: text
@@ -102,8 +108,8 @@
            Kernel density plots provide a useful alternative for when you have continuous variables. 
            Set up the ggplot command like a histogram, but add 
           'geom_density' at the end instead of 'geom_histogram'. Use the variable 'cialifex' instead of 'democ11'." 
-  CorrectAnswer: ggplot(world, aes(world$cialifex)) + geom_density()
-  AnswerTests: any_of_exprs('ggplot(world, aes(world$cialifex)) + geom_density()')
+  CorrectAnswer: ggplot(world, aes(cialifex)) + geom_density()
+  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_density()')
   Hint: "Remember to change the variable from 'democ11' to 'cialifex'."
   
 - Class: text
