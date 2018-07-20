@@ -91,6 +91,27 @@
   Output: "The 'col=' specification can be used to change the color of other graphs as well. While color printing
           for research papers may be unnecessary, adding color can make your graphics 'pop' when presenting research
           at conferences."
+          
+- Class: cmd_question
+  Output: "Now that you have a (more) beautiful histogram, let's add a variable label to enhance clarity.
+          While you might know what 'cialifex' means, others might not. This can be done using the handy
+          labs() function. At the end of your previous command,
+          add '+ labs(x=Average life expectancy)'. Remember -- your new label name needs to be
+          inside single quotation marks.
+  CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')
+  AnswerTests: any_of_exprs('world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')')
+  Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') 
+        + labs(x='Average life expectancy')"
+        
+- Class: cmd_question
+  Output: "labs() can also be used to make a title for your graph. Including a title is a good habit
+          because readers do not need to exert as much effort to understand what they are looking at. Building
+          off of your previous command, add 'title=This is a title' inside the labs() function.
+          Your title should be in single quotation marks. Don't forget commas where appropriate."
+  CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy', title='This is a title')
+  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy', title='This is a title')')
+  Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') 
+        + labs(x='Average life expectancy', title='This is a title')"
 
 - Class: cmd_question
   Output: "Histograms are not the only way to visualize data for one variable. 
@@ -126,9 +147,9 @@
 - Class: cmd_question
   Output: "Sometimes relationships can be hard to identify from scatter plots. We can plot a line of best fit
           to make the relationship more transparent. Add '+ geom_smooth(method=lm)' to the end 
-          of your previous command. lm needs to be in quotation marks."
-  CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method="lm")
-  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method="lm")')
+          of your previous command. lm should be in single quotation marks."
+  CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm')
+  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm')')
   Hint: "You can use the up arrow to recall your previous command."
 
 - Class: text
@@ -138,21 +159,11 @@
           'se=FALSE' inside geom_smooth()."
 
 - Class: cmd_question
-  Output: "Last but not least, all graphs should have a title to tell readers what they are looking at. This can
-          be done using labs(). Add '+ labs(title=This is a title)' to the end of your previous command.
-          'This is a title' needs to be in quotation marks."
-  CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title")
-  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title")')
-  Hint: "You can use the up arrow to recall your previous command."
-
-- Class: cmd_question
-  Output: "The handy labs() function can also change your variables' labels on the x and y axises to make them
-          more descriptive. Especially when loading data from a csv format, your variables might not have useful labels.
-          Without them, readers may have difficulty understanding what you are graphing. Inside the function, 
-          add 'x=Education Spending (Percent of GDP), y=Gender Inequality Index'. 
-          Your new label names need to be in single quotation marks."
-  CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="Education Spending (Percent of GDP)", y="Gender Inequality Index")
-  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method="lm") + labs(title="This is a title", x="Education Spending (Percent of GDP)", y="Gender Inequality Index")')
+  Output: "Let's practice adding labels to the scatterplot to make it look nicer. Inside the function, 
+          add 'x=Education Spending (Percent of GDP), y=Gender Inequality Index'. Remember to put your labels
+          inside single quotation marks.
+  CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')
+  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')')
   Hint: "You can use the up arrow to recall your previous command."
 
 - Class: text
