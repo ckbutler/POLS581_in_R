@@ -54,13 +54,13 @@
   AnswerTests: any_of_exprs('glm(cappun_dummy ~ age, data = gss, family = binomial(link = 'logit'))')
   Hint: "Type glm(cappun_dummy ~ age, data = gss, family = binomial(link = 'logit'))."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "Calling the 'glm()' function on its own returns coefficients for the intercept and the independent variable for each category of the dependent variable. But notice that it doesn't return whether the model is significant, or anything else we need to interpret the results. Instead, we need  to use the assignment operator, '<-', to create a model object that we can return to later. Type 'model <- glm(cappun_dummy ~ age, data = gss, family = binomial(link = 'logit'))' to create an object called 'model' that contains the results of the Logistic regression."
   CorrectAnswer: model <- glm(cappun_dummy ~ age, data = gss, family = binomial(link = 'logit'))
   AnswerTests: any_of_exprs('model <- glm(cappun_dummy ~ age, data = gss, family = binomial(link = 'logit'))')
   Hint: "Type model <- glm(cappun_dummy ~ age, data = gss, family = binomial(link = 'logit')) to build the model."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "The above command, like most assignment commands, produces no output. However, now that we've produced a model object, we can apply all sorts of other functions to it to generate interesting results or visualizations. For instance, we can get a general impression of the the regression model using the 'summary()' function. Type 'summary(model)' below to generate output with residuals, coefficients, indicators of statistical significance, and more."
   CorrectAnswer: summary(model)
   AnswerTests: any_of_exprs('summary(model)')
@@ -79,11 +79,11 @@
   AnswerTests: any_of_exprs('library(ggplot2)')
   Hint: "Type library(ggplot2) to load the library."
   
-  - Class: cmd_question
+- Class: cmd_question
   Output: "To create a simple graph, type 'ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line()' below. Don't worry too much about the structure of the ggplot() function --- visit the Data Visualization lesson for more detailed information on how to use the 'ggplot2' library and the ggplot() function. Instead, pay attention to the data input for the 'x' and 'y' axes of the graph. For the 'x' axis, we want to point the ggplot() function to the independent variable, age. Why use the age variable included in the 'model' object instead of the 'gss' data frame? Because both the 'age' and 'fitted.values' variables are created by the Logistic regression function, glm(), we used before, we can be sure that they are the same length, which is REQUIRED when using ggplot(). Keep in mind that there are many different strategies for generating post-estimation data and visualizing statistical models, and you should explore these before you decide to include visualizations in manuscripts intended for publication. Type the above command to continue. In a typical configuration of RStudio, it will produce a plot in the lower right-hand pane."
   CorrectAnswer: ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line()
   AnswerTests: any_of_exprs('ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line()')
   Hint: "Type ggplot(data = model, aes(x = model$model$age, y = model$fitted.values)) + geom_line() to produce the plot."
   
-  - Class: text
+- Class: text
   Output: "Great work! In this lesson, you have learned how to setup, create, and explore a bivariate Logistic regression model."
