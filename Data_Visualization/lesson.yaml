@@ -63,7 +63,7 @@
 - Class: cmd_question
   Output: "For example, let's change the bin width of the x axis so that there are no spaces between the 
           cut points. Using the 'cialifex' variable (average life expectancy in a country), add 'breaks=seq(35, 90, by=5)'
-          inside the geom_histogram() part of the command.
+          inside the geom_histogram() part of the command."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5))
   AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5))')
   Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command."
@@ -98,7 +98,7 @@
           While you might know what 'cialifex' means, others might not. This can be done using the handy
           labs() function. At the end of your previous command,
           add '+ labs(x=Average life expectancy)'. Remember -- your new label name needs to be
-          inside single quotation marks.
+          inside single quotation marks."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')
   AnswerTests: any_of_exprs('world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')')
   Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') 
@@ -163,7 +163,7 @@
 - Class: cmd_question
   Output: "Let's practice adding labels to the scatterplot to make it look nicer. Inside the function, 
           add 'x=Education Spending (Percent of GDP), y=Gender Inequality Index'. Remember to put your labels
-          inside single quotation marks.
+          inside single quotation marks."
   CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')
   AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')')
   Hint: "You can use the up arrow to recall your previous command."
