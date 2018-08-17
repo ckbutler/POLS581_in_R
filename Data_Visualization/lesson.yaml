@@ -51,7 +51,7 @@
           indicate how many countries have those scores."
           
 - Class: cmd_question
-  Output: "Let's practice using another variable. This time, make a histogram using the 'cialifex' variable.
+  Output: "Let's practice using another variable. This time, make a histogram using the 'cialifex' variable."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram()
   AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram()')
   Hint: "Remember not to use quotation marks. You can use the up arrow to recall your previous command and add your new variable." 
