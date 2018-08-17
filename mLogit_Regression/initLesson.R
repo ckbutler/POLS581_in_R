@@ -3,4 +3,4 @@
       # the user's working directory and thus be accessible to them
       # throughout the lesson.
 
-states <- read.csv(file.path(find.package("swirl"), "Courses","POLS581_in_R","mLogit_Regression","states.csv"))
+gss <- read.csv(file.path(find.package("swirl"), "Courses","POLS581_in_R","mLogit_Regression","gss2012_subset.csv"))
