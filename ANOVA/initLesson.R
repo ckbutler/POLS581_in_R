@@ -6,4 +6,4 @@
 # library(Kendall)
 # library(gmodels)
 
-gss <- read.csv(file.path(find.package("swirl"), "Courses","POLS581_in_R","ANOVA","gss2012_subset.csv"))
+states <- read.csv(file.path(find.package("swirl"), "Courses","POLS581_in_R","ANOVA","states.csv"))
