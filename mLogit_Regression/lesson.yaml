@@ -13,7 +13,7 @@
   Output: "Note that this lesson has automatically imported data from the 'gss' dataset into a dataframe called 'gss.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
   
 - Class: cmd_question
-  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, age, indicates the age of the respondent. To view the 'age' variable, type 'gss$age' The dollar sign symbol indicates that we'd like to view the 'age' variable inside the 'gss' dataframe object."
+  Output: "First, we need to select variables for exploration. Again, we have already picked two for you! The independent variable, age, indicates the age of the respondent. To view the 'age' variable, type 'gss$age' The dollar sign symbol indicates that we'd like to view the 'age' variable inside the 'gss' dataframe object."
   CorrectAnswer: gss$age
   AnswerTests: any_of_exprs('gss$age')
   Hint: "Type gss$age to view the age variable."
