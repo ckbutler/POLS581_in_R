@@ -60,13 +60,13 @@
   AnswerTests: any_of_exprs('multinom(getahead_factor ~ age, data = gss)')
   Hint: "Type multinom(getahead_factor ~ age, data = gss)."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "Calling the 'multinom()' function on its own returns coefficients for the intercept and the independent variable for each category of the dependent variable. But notice that it doesn't return whether the model is significant, or anything else we need to interpret the results. Instead, we need  to use the assignment operator, '<-', to create a model object that we can return to later. Type 'model <- multinom(getahead_factor ~ age, data = gss)' to create an object called 'model' that contains the results of the Multinomial Logistic regression."
   CorrectAnswer: model <- multinom(getahead_factor ~ age, data = gss)
   AnswerTests: any_of_exprs('model <- multinom(getahead_factor ~ age, data = gss)')
   Hint: "Type model <- multinom(getahead_factor ~ age, data = gss) to build the model."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "The above command, like most assignment commands, produces no output. However, now that we've produced a model object, we can apply all sorts of other functions to it to generate interesting results or visualizations. For instance, we can get a general impression of the the Multinomial regression model using the 'summary()' function. Type 'summary(model)' below to generate output with residuals, coefficients, indicators of statistical significance, and R-squared statistic, and more."
   CorrectAnswer: summary(model)
   AnswerTests: any_of_exprs('summary(model)')
