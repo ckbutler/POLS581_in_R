@@ -71,13 +71,13 @@
   AnswerTests: any_of_exprs('lm(gay_support ~ indpct_m, data = states)')
   Hint: "Type lm(gay_support ~ indpct_m, data = states) to build the model."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "Calling the 'lm()' function on its own returns coefficients for the intercept and the independent variable. But notice that it doesn't return whether the model is significant, or anything else we need to interpret the results. Instead, we need  to use the assignment operator, '<-', to create a model object that we can return to later. Type 'model <- lm(gay_support ~ indpct_m, data = states)' to create an object called 'model' that contains the results of the OLS regression."
   CorrectAnswer: model <- lm(gay_support ~ indpct_m, data = states)
   AnswerTests: any_of_exprs('model <- lm(gay_support ~ indpct_m, data = states)')
   Hint: "Type model <- lm(gay_support ~ indpct_m, data = states) to build the model."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "The above command, like most assignment commands, produces no output. However, now that we've produced a model object, we can apply all sorts of other functions to it to generate interesting results or visualizations. For instance, we can get a general impression of the the OLS regression model using the 'summary()' function. Type 'summary(model)' below to generate output with residuals, coefficients, indicators of statistical significance, and R-squared statistic, and more."
   CorrectAnswer: summary(model)
   AnswerTests: any_of_exprs('summary(model)')
@@ -90,19 +90,19 @@
   AnswerTests: omnitest(correctVal='Yes')
   Hint: "Look again. What is the p-value for the independent variable, 'indpct_m'?"
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "Good news! Our model describes a statistically significant relationship. Because the intercept is greater than zero and significant at the p < 0.01 level, we can say that as the percentage of independents in a state increases, support for gay rights also increases. Furthermore, we can say that as the percentage of independents increases by 0.48% (the value of the coefficient), support for gay rights increases by 1%. But we're not done yet! As with most statistical modeling techniques, the creation of the model itself is not nearly as important as adequately preparing the data during the pre-estimation phase and running diagnostic tests in the post-estimation phase. One action you should always take post-estimation for OLS regression is an examination of the residuals, or errors. An error is the difference between an observed value of the dependent variable and a corresponding value of the dependent variable predicted by the model. In other words, the model will predict the expected level of support for gay rights in each state, and the error value is the difference between that prediction and the actual, observed level of gay rights in the original survey. Let's begin by taking a look at the predicted values. Type 'model$fitted.values' below to return a list of the predicted values stored in the model object."
   CorrectAnswer: model$fitted.values
   AnswerTests: any_of_exprs('model$fitted.values')
   Hint: "Type model$fitted.values to view the predicted values."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "Our model says that the first state on the list (Vermont, somewhat confusingly) should have 60.81% of the population in favor of gay rights. The model predicts this value solely on the basis of the percentage of independent voters in the state. Of course, there are plenty of other factors that could contribute to support for gay rights: religiosity, social conservatism, age, education, and so forth. Thus, we shouldn't expect this prediction to be perfect. Let's take a quick look at our original data to see Vermont's actual level of support for gay rights. While we could go back and look at the 'states' dataframe, let's keep working with the model object. Access the original data that the model is based on by typing 'model$model' below. This will create a long list in your output window --- you might have to scroll up to see the first observation."
   CorrectAnswer: model$model
   AnswerTests: any_of_exprs('model$model')
   Hint: "Type model$model to view the observed values."
 
-  - Class: cmd_question
+- Class: cmd_question
   Output: "The observed data tells us that 65% of the population of Vermont is in favor of gay rights. Without using the R console, we can already see that the model prediction is off by about 4%. That might not seem like much, but we can only really know how good the predictive power of the model is in the context of all the errors. If there is one error value that is very large, for instance, it might indicate a big outlier that is skewing our results. In other words, if Vermont actually has support for gay rights in the high 90s but our model predicts that only about 50% of the population will support gay rights, then that observation is problem for our model. One useful way to examine all of the errors as a whole is to check if they are normally distributed. Again, we turn to the 'hist()' function to generate a histogram. Type 'hist(model$residuals)' below to generate histogram of the errors, which the modeling function has already generated for us."
   CorrectAnswer: hist(model$residuals)
   AnswerTests: any_of_exprs('hist(model$residuals)')
