@@ -36,7 +36,7 @@
 - Class: cmd_question
   Output: "Now that our two variables are coded properly, let's look at a cross-tabulation of them. A cross-tab shows the number (and sometimes proportion) of observations that fall into each category (female and voted, female and did not vote, male and voted, male and did not vote). In base R, we can use the 'table()' function for this. Enter 'table(gss$vote08, gss$female' below to create a new cross-tab of these two variables."
   CorrectAnswer: table(gss$vote08, gss$female)
-  AnswerTests: any_of_exprs('table(gss$vote08, gss$female')
+  AnswerTests: any_of_exprs('table(gss$vote08, gss$female)')
   Hint: "Type table(gss$vote08, gss$female) to create the table."
 
 - Class: cmd_question
