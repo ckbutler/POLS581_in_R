@@ -1,13 +1,13 @@
 - Class: meta
   Course: POLS581 in R
   Lesson: The RStudio Workspace
-  Author: Colin M. Henry (Adapted from David Kane)
+  Author: Colin M. Henry (Adapted from David Kane); revised by Christopher K. Butler
   Type: Standard
   Organization: University of New Mexico
   Version: 2.4.3
 
 - Class: text
-  Output: In this lesson, you'll learn how to examine your local workspace in RStudio and begin to explore the file system of your computer. Because different operating systems (Windows, MacOS, and so on) have different conventions with regards to things like file paths, the outputs of these commands may vary across computers. But R provides a common set of commands for interacting with files and folders, so any code you write will work across all types of computers!
+  Output: In this lesson, you'll learn how to examine your local workspace (or environment) in RStudio and begin to explore the file system of your computer. Because different operating systems (Windows, MacOS, and so on) have different conventions with regards to things like file paths, the outputs of these commands may vary across computers. But R provides a common set of commands for interacting with files and folders, so any code you write will work across all types of computers!
 
 - Class: cmd_question
   Output: Determine which directory your R session is using as its current working directory using getwd(). The working directory is your "place" on your computer. The current working directory is where R expects to find data or other R scripts, and where R will save your data or script by default. It's important to keep track of your working directory to keep projects like homework or research projects organized. Type getwd() below to see your current working directory.
@@ -15,23 +15,29 @@
   AnswerTests: omnitest(correctExpr='getwd()')
   Hint: Type getwd() to determine the current working directory.
 
-- Class: cmd_question
-  Output: List all the objects in your local workspace using ls(). As you begin importing data, generating new variables, and creating graphics, your workspace will populated with objects. Type ls() to view all the objects in your local workspace. If you just opened a new RStudio workspace and loaded this lesson, there might not be any objects in your workspace yet!
-  CorrectAnswer: ls()
-  AnswerTests: omnitest(correctExpr='ls()')
-  Hint: Type ls() to view all the objects in your local workspace.
+- Class: text
+  Output: Your working directory is typically a folder on your hard drive that are saved between sessions. R also keeps temporary objects in a workspace environment for use during a session. These may be copies of datasets from your hard drive that you are working with for data analysis or a variety of other objects that R uses. 
 
 - Class: cmd_question
-  Output: Let's create a new object. Assign 9 to x using x <- 9. The "<-" character is the assignment symbol. The value on the right side will be assigned or "stored" in the variable on the left side. Type x <- 9 below.
+  Output: List all the objects in your local environment using ls(). As you begin importing data, generating new variables, and creating graphics, your environment will populated with objects. Type ls() to view all the objects in your local environment. If you just opened a new RStudio environment and loaded this lesson, there might not be any objects in your environment yet!
+  CorrectAnswer: ls()
+  AnswerTests: omnitest(correctExpr='ls()')
+  Hint: Type ls() to view all the objects in your local environment.
+
+- Class: cmd_question
+  Output: Let's create a new object. Assign 9 to x using x <- 9. The "<-" character is the assignment symbol; you create this character by tying "<" and then typing "-". The value on the right side will be assigned or "stored" in the variable on the left side. Type x <- 9 below.
   CorrectAnswer: x <- 9
   AnswerTests: omnitest(correctExpr='x <- 9')
   Hint: Type x <- 9 to assign 9 to x.
 
 - Class: cmd_question
-  Output: Now take a look at objects that are in your workspace using ls() again. You should see x, the object you just created!
+  Output: Now take a look at objects that are in your environment using ls() again. You should see x, the object you just created!
   CorrectAnswer: ls()
   AnswerTests: omnitest(correctExpr='ls()')
-  Hint: Type ls() to view all the objects in your workspace.
+  Hint: Type ls() to view all the objects in your environment.
+
+- Class: text
+  Output: If you are using RStudio, there is also a window pane (usually in the upper right hand) that shows your environment and what objects are currently in it.
 
 - Class: cmd_question
   Output: Similarly, you may list all the files in your working directory using list.files() or dir(). Type dir() to produce a list of all the files in the current working directory of R.
@@ -40,7 +46,7 @@
   Hint: Type dir() to all the files in your working directory.
 
 - Class: cmd_question
-  Output: Keep in mind as you go through this lesson and future lessons, you can get more help with each function using the "?" command. Using "?" in conjunction with a function name opens a help window in RStudio, typically in the lower right hand pane of the workspace. Help files explain what functions do, what packages they are associated with, what type of inputs they accept, and often provide examples of usage. For example, to get help with the dir() function, type ?dir below. 
+  Output: Keep in mind as you go through this lesson and future lessons, you can get more help with each function using the "?" command. Using "?" in conjunction with a function name opens a help window in RStudio, typically in the lower right hand pane of the environment. Help files explain what functions do, what packages they are associated with, what type of inputs they accept, and often provide examples of usage. For example, to get help with the dir() function, type ?dir below. 
   CorrectAnswer: ?dir
   AnswerTests: any_of_exprs('?list.files', '?dir', 'help("list.files")', 'help("dir")')
   Hint: Type ?dir to see the help page.
@@ -48,11 +54,11 @@
 - Class: text
   Output: One of the most helpful parts of any R help file is the See Also section. This provides links to similar functions, helper functions, or similar R concepts.
 
-- Class: cmd_question
-  Output: Using the args() function on a function name is also a handy way to see what arguments a function can take. For example, use the args() function to determine the arguments to dir() by typing args(dir) below.
-  CorrectAnswer: args(dir)
-  AnswerTests: omnitest(correctExpr='args(dir)')
-  Hint: Type args(dir) to see the arguments to dir.
+# - Class: cmd_question
+#   Output: Using the args() function on a function name is also a handy way to see what arguments a function can take. For example, use the args() function to determine the arguments to dir() by typing args(dir) below.
+#   CorrectAnswer: args(dir)
+#   AnswerTests: omnitest(correctExpr='args(dir)')
+#   Hint: Type args(dir) to see the arguments to dir.
 
 - Class: cmd_question
   Output: Recall from above when we asked R for the value of the current working directory with getwd() and assigned the number 9 to the variable x? Assign the value of the current working directory to a variable called "oldDir."
@@ -87,10 +93,13 @@
   Hint: Type file.create("myTest.R") to create a new file.
 
 - Class: cmd_question
-  Output: This should be the only file in this newly created directory. Let's check this by listing all the files in the current directory again. Note that you should also see the contents of the working directory in the RStudio "Files" pane, typically in the lower right hand corner of the workspace.
+  Output: This should be the only file in this newly created directory. Let's check this by listing all the files in the current directory again.
   CorrectAnswer: dir()
   AnswerTests: any_of_exprs('list.files()', 'dir()')
   Hint: dir() shows that the directory only contains mytest.R.
+
+- Class: text
+  Output: In RStudio, you should also see the contents of the working directory in the RStudio "Files" pane, typically in the lower right hand corner. You may well have to click the "Files" tab. You may also have to click the "More" drop menu and then "Go To Working Directory".
 
 - Class: cmd_question
   Output: Another way to see if your file exists in the working directory is with the file.exists() function. Check to see if "mytest.R" exists in the working directory by typing file.exists("myTest.R") below.
@@ -107,6 +116,12 @@
   AnswerTests: omnitest(correctExpr='setwd(oldDir)')
   Hint: Use setwd(oldDir).
 
+- Class: cmd_question
+  Output: You can remove objects from your environment with the rm() command, putting the name of the object inside the parentheses. Or, you can remove all objects from your environment using the rm(list = ls()) command. Remove all objects from your envirnoment now.
+  CorrectAnswer: rm(list = ls())
+  AnswerTests: omnitest(correctExpr='rm(list = ls())')
+  Hint: Type rm(list = ls()) exactly, remembering to match parentheses.
+
 - Class: text
-  Output: Make sure you delete the test directory, testDir, after you've finished. Keeping a tidy workspace and working directory will make your life much easier once you start digging deep on real life projects. In this lesson, you've learned how to change working directories, create new folders and files, find help on functions, and jump in and out lessons to test out new functions.
+  Output: Make sure you delete the test directory, testDir, after you've finished. Keeping a tidy environment and working directory will make your life much easier once you start digging deep on real life projects. In this lesson, you've learned how to change working directories, create new folders and files, find help on functions, and jump in and out lessons to test out new functions.
 

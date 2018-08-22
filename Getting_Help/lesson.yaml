@@ -10,7 +10,7 @@
   Output: "This lesson will show you how to get help in the RStudio environment. One of the big advantages of using RStudio to write R code is the large built-in help system. RStudio can tell you how to use functions, direct you to new functions, provide extended examples, and give you access to sample data. Remember, help is your friend!"
 
 - Class: cmd_question
-  Output: "To launch a help page for a specific function, use the 'help()' function. Using the console, ask for help with the 'setwd()' function by typing 'help(setwd).' In typical setups, it will open an HTML page the lower right hand pane in RStudio."
+  Output: "To launch a help page for a specific function, use the 'help()' function. Using the console, ask for help with the 'setwd()' function by typing 'help(setwd).' In typical setups, it will open a documentation page the lower right hand pane in RStudio."
   CorrectAnswer: help(setwd)
   AnswerTests: any_of_exprs('help(setwd)')
   Hint: "Type help(setwd)."
@@ -31,7 +31,7 @@
   Hint: "Type example(plot)."
 
 - Class: cmd_question
-  Output: "Some packages come pre-loaded with powerful tutorials called vignettes, which walk you through function inputs, options, and outputs with detailed comments and sample data. To see what vignettes are available on your system, use the 'vignette()' command. In the typical configuration, this function will open an HTML page the upper left-hand viewing pane of RStudio. Type 'vignette()' below to continue."
+  Output: "Some packages come pre-loaded with powerful tutorials called vignettes, which walk you through function inputs, options, and outputs with detailed comments and sample data. To see what vignettes are available on your system, use the 'vignette()' command. In the typical configuration, this function will open a documentation page the upper left-hand viewing pane of RStudio. Type 'vignette()' below to continue."
   CorrectAnswer: vignette()
   AnswerTests: any_of_exprs('vignette()')
   Hint: "Type vignette()."
