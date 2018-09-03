@@ -85,7 +85,7 @@
           your fill color (blue), specify your outline color using 'col=red' (with red in single quotation marks).
           Don't forget commas where appropriate."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')
-  AnswerTests: any_of_exprs("world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')")
+  AnswerTests: any_of_exprs("ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')")
   Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')."
 
 - Class: text
