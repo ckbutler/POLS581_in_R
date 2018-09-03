@@ -77,7 +77,7 @@
           Add 'fill=blue' (with blue in single quotation marks) to the 'geom_histogram' part of your command. 
           Don't forget to add a comma."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue')
-  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue')')
+  AnswerTests: any_of_exprs("ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue')")
   Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue')."
 
 - Class: cmd_question
@@ -85,7 +85,7 @@
           your fill color (blue), specify your outline color using 'col=red' (with red in single quotation marks).
           Don't forget commas where appropriate."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')
-  AnswerTests: any_of_exprs('world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')')
+  AnswerTests: any_of_exprs("world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')")
   Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red')."
 
 - Class: text
@@ -100,7 +100,7 @@
           add '+ labs(x=Average life expectancy)'. Remember -- your new label name needs to be
           inside single quotation marks."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')
-  AnswerTests: any_of_exprs('world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')')
+  AnswerTests: any_of_exprs("ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy')")
   Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') 
         + labs(x='Average life expectancy')"
         
@@ -110,7 +110,7 @@
           off of your previous command, add 'title=This is a title' inside the labs() function.
           Your title should be in single quotation marks. Don't forget commas where appropriate."
   CorrectAnswer: ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy', title='This is a title')
-  AnswerTests: any_of_exprs('ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy', title='This is a title')')
+  AnswerTests: any_of_exprs("ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') + labs(x='Average life expectancy', title='This is a title')")
   Hint: "Type ggplot(world, aes(cialifex)) + geom_histogram(breaks=seq(35, 90, by=5), fill='blue', col='red') 
         + labs(x='Average life expectancy', title='This is a title')"
 
@@ -151,7 +151,7 @@
           to make the relationship more transparent. Add '+ geom_smooth(method=lm)' to the end 
           of your previous command. lm should be in single quotation marks."
   CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm')
-  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm')')
+  AnswerTests: any_of_exprs("ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm')")
   Hint: "You can use the up arrow to recall your previous command."
 
 - Class: text
@@ -165,7 +165,7 @@
           add 'x=Education Spending (Percent of GDP), y=Gender Inequality Index'. Remember to put your labels
           inside single quotation marks."
   CorrectAnswer: ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')
-  AnswerTests: any_of_exprs('ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')')
+  AnswerTests: any_of_exprs("ggplot(world, aes(x=ciaedex, y=UN_GII)) + geom_point() + geom_smooth(method='lm') + labs(x='Education Spending (Percent of GDP)', y='Gender Inequality Index')")
   Hint: "You can use the up arrow to recall your previous command."
 
 - Class: text
