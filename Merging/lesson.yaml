@@ -1,0 +1,160 @@
+### REMEMBER: Try to think like someone who's terrified of math and 
+###           doesn't know why the hell they're being asked to do this crap. 
+
+- Class: meta
+  Course: Swirl Lessons
+  Lesson: Merging
+  Author: David Nunnally
+  Type: Standard
+  Organization: University of New Mexico
+  Version: 2.4.3
+
+- Class: text
+  Output: "In this lesson, you will learn how to merge two data sets together."
+
+- Class: text
+  Output: "Unless you are working with cleaned data, data sets often do not include all of the variables that
+          you will need for your analysis. Therefore, you may need to borrow variables from other data sets.
+          This is where merging comes in handy."
+          
+- Class: text
+  Output: "We have loaded two data sets that include different US state-level variables that you might need
+          for an analysis. In order to perform an analysis, they will need to be merged together. Let's think
+          about a merge conceptually; you have two lists of observations, and you need to combine them
+          together. On paper, you would first need to sort them by some unique identifier so that
+          X goes with X and Y goes with Y. Once sorted, you could put the lists together and check for errors.
+          For example, if the first list has observation Q and the second list does not, you would need to decide
+          what to do with Q -- keep it and give it a missing value for some variables or omit it. That way,
+          the two lists match properly. The merge command does this for you, and you can specify the type of
+          merge to deal with problems in matching observations."
+          
+- Class: cmd_question
+  Output: "To begin, we should look for identification variables that both data frames have in common. 
+          Start by typing 'names(states1)' to look at the names of the variables in the data frame 'states1'."
+  CorrectAnswer: names(states1)
+  AnswerTests: any_of_exprs('names(states1)')
+  Hint: "Type 'names(states1)' without quotation marks."
+  
+- Class: cmd_question
+  Output: "Now, look at the names of the variables in the data frame 'states2'."
+  CorrectAnswer: names(states2)
+  AnswerTests: any_of_exprs('names(states2)')
+  Hint: "Type 'names(states2)' without quotation marks."
+  
+- Class: cmd_question
+  Output: "You might have noticed that the data frames have three variables in common. Next, we need to see
+          which of these are identification variables. Use the 'View()' command to look at the values of these
+          variables in the 'states1' data frame."
+  CorrectAnswer: View(states1)
+  AnswerTests: any_of_exprs('View(states1)')
+  Hint: "Type 'View(states1)' without quotation marks."
+  
+- Class: mult_question
+  Output: "Which of the following variables is an identification variable?"
+  AnswerChoices: StateID ; Obama2012 ; Pot_policy ; Religiosity3
+  CorrectAnswer: StateID
+  AnswerTests: omnitest(correctVal='StateID')
+  Hint: "Which of these variables identifies each unique observation best?"
+
+- Class: text
+  Output: "While both StateID and state could be unique identifiers, StateID would be the best variable to
+          merge on. A simple discrepancy in the naming of a state would create a mismatch and R would treat them
+          as separate observations. As an example, 'states1' has 'NewMexico' while 'states2' has
+          'New_Mexico'."
+          
+- Class: text
+  Output: "There are four ways to merge two data frames together -- left outer, right outer, inner join,
+          and outer join. Below we will learn how to do each and illustrate the differences between them."
+          
+- Class: cmd_question
+  Output: "Let's begin with the left outer merge. You will specify two data frames (x and y), the unique identifier
+          that both data frames have in common, and the type of merge you wish to do (all.x for left outer).
+          Type 'states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)'."
+  CorrectAnswer: states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)
+  AnswerTests: any_of_exprs('states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)')
+  Hint: "Type 'states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)' without quotation marks."
+  
+- Class: cmd_question
+  Output: Type 'View(states3)' to see what's going on in the new data frame.
+  CorrectAnswer: View(states3)
+  AnswerTests: any_of_exprs('View(states3)')
+  Hint: "Type 'View(states3)' without quotation marks." 
+  
+- Class: text
+  Output: "The left outer merge uses the 'x' data as the master set. This means that any observations in 'y'
+          but not in 'x' would not be included in the merge. Notice that even though the 'states2' data has
+          information for Iowa, the 'states3' data does not have information for Iowa because the 'states1' 
+          data has no information for Iowa. Moreover, even though the 'states2' data does not have 
+          information for Connecticut, 'states3' includes Connecticut among its observations. For the variables
+          coming from 'states2', R codes Connecticut as NA -- missing values."
+          
+- Class: text
+  Output: "Notice that R does not eliminate the previous data frames 'states1' and 'states2'. Instead, R
+          creates the new data frame 'states3' and leaves the others in tact. This is purposeful; if you
+          made a mistake in your merge, you could go back and respecify it easily without having to panic
+          if you accidentally saved your new data."
+          
+- Class: cmd_question
+  Output: "Let's try a right outer merge now. Set up the command like the last one, but include 'all.y = TRUE'
+          instead of 'all.x = TRUE'. Name the new data frame 'states4'."
+  CorrectAnswer: states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)
+  AnswerTests: any_of_exprs('states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)')
+  Hint: "Type 'states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)' without
+        quotation marks."
+        
+- Class: cmd_question
+  Output: "Type 'View(states4)' to look at the new data frame."
+  CorrectAnswer: View(states4)
+  AnswerTests: any_of_exprs('View(states4)')
+  Hint: "Type 'View(states4)' without quotation marks."
+  
+- Class: text
+  Output: "Unlike the left outer merge, the right outer merge uses the 'y' data as the master set. Because
+          'states2' does not have information for Connecticut, Connecticut does not get included in the merged
+          data frame. 'states2' does include Iowa though; because 'states1' has no information for Iowa, its
+          variables get coded as NA for that state."
+          
+- Class: cmd_question
+  Output: "Let's try the inner join merge next. Set up the merge just like the last two, but get rid of 
+          'all = TRUE' at the end. Call the new data frame 'states5'."
+  CorrectAnswer: states5 <- merge(x = states1, y = states2, by = 'StateID')
+  AnswerTests: any_of_exprs('states5 <- merge(x = states1, y = states2, by = 'StateID')')
+  Hint: "Type 'states5 <- merge(x = states1, y = states2, by = 'StateID')' without the quotation marks."
+  
+- Class: cmd_question
+  Output: "View the newly created data frame."
+  CorrectAnswer: View(states5)
+  AnswerTests: any_of_exprs('View(states5)')
+  Hint: "Type 'View(states5)' without quotation marks."
+  
+- Class: text
+  Output: "Notice that the 'states5' data frame has 48 observations instead of 49. This is because the
+          inner join merge only matches observations if they are present in both data frames. Because 'states1'
+          has no information on Iowa and 'states2' has no information on Connecticut, 'states5' excludes both
+          of those observations. As a result, none of the observations have any missing values."
+          
+- Class: cmd_question
+  Output: "Finally, let's attempt the outer join merge. Set up the merge just like all the others, then add
+          'all = TRUE' at the end. Call the new data frame 'states6'."
+  CorrectAnswer: states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)
+  AnswerTests: any_of_exprs('states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)')
+  Hint: "Type 'states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)' without
+        quotation marks."
+        
+- Class: cmd_question
+  Output: "Now that you've created 'states6', use the view command to look at your data."
+  CorrectAnswer: View(states6)
+  AnswerTests: any_of_exprs('View(states6)')
+  Hint: "Type 'View(states6)' without quotation marks."
+  
+- Class: text
+  Output: "Notice that you now have 50 observations instead of 48 or 49. The outer join merge collects as much
+          information as it can; no observations get thrown away, even if one of the other data frames
+          did not have information for that observation. As you can see, the new data frame includes both
+          Iowa and Connecticut, and gives them missing values for variables where no information exists."
+          
+- Class: text
+  Output: "How do you choose which type of merge to use? Well, if you're only interested in the observations
+          in data frame 'x', then the left outer merge makes the most sense. If you're only interested in
+          the observations in data frame 'y', then the right outer merge makes the most sense. If you
+          foresee using observations from both data frames, then the outer join merge makes the most sense."
