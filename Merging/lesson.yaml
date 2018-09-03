@@ -71,7 +71,7 @@
           that both data frames have in common, and the type of merge you wish to do (all.x for left outer).
           Type 'states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)'."
   CorrectAnswer: states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)
-  AnswerTests: any_of_exprs('states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)')
+  AnswerTests: any_of_exprs("states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)")
   Hint: "Type 'states3 <- merge(x = states1, y = states2, by = 'StateID', all.x = TRUE)' without quotation marks."
   
 - Class: cmd_question
@@ -98,7 +98,7 @@
   Output: "Let's try a right outer merge now. Set up the command like the last one, but include 'all.y = TRUE'
           instead of 'all.x = TRUE'. Name the new data frame 'states4'."
   CorrectAnswer: states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)
-  AnswerTests: any_of_exprs('states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)')
+  AnswerTests: any_of_exprs("states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)")
   Hint: "Type 'states4 <- merge(x = states1, y = states2, by = 'StateID', all.y = TRUE)' without
         quotation marks."
         
@@ -118,7 +118,7 @@
   Output: "Let's try the inner join merge next. Set up the merge just like the last two, but get rid of 
           'all = TRUE' at the end. Call the new data frame 'states5'."
   CorrectAnswer: states5 <- merge(x = states1, y = states2, by = 'StateID')
-  AnswerTests: any_of_exprs('states5 <- merge(x = states1, y = states2, by = 'StateID')')
+  AnswerTests: any_of_exprs("states5 <- merge(x = states1, y = states2, by = 'StateID')")
   Hint: "Type 'states5 <- merge(x = states1, y = states2, by = 'StateID')' without the quotation marks."
   
 - Class: cmd_question
@@ -137,7 +137,7 @@
   Output: "Finally, let's attempt the outer join merge. Set up the merge just like all the others, then add
           'all = TRUE' at the end. Call the new data frame 'states6'."
   CorrectAnswer: states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)
-  AnswerTests: any_of_exprs('states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)')
+  AnswerTests: any_of_exprs("states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)")
   Hint: "Type 'states6 <- merge(x = states1, y = states2, by = 'StateID', all = TRUE)' without
         quotation marks."
         
