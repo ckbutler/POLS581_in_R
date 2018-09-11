@@ -97,9 +97,9 @@
 
 - Class: cmd_question
   Output: "To calculate Kendall's tau, simply call the 'Kendall()' function with the two ordinal variables of interest. Type 'Kendall(gss$attend3, gss$natsci)' below."
-  CorrectAnswer: Kendall(gss$attend4, gss$natsci)
-  AnswerTests: any_of_exprs('Kendall(gss$attend4, gss$natsci)')
-  Hint: "Type Kendall(gss$attend4, gss$natsci) to calculate Kendall's tau."
+  CorrectAnswer: Kendall(gss$attend3, gss$natsci)
+  AnswerTests: any_of_exprs('Kendall(gss$attend3, gss$natsci)')
+  Hint: "Type Kendall(gss$attend3, gss$natsci) to calculate Kendall's tau."
 
 - Class: test
   Output: "This lesson has shwon you how to set up and perform a chi-squared test in R. We set up and performed dichotomous-by-dichotomous and ordinal-by-ordinal tests using data from the 2012 General Social Survey. Please feel free to revisit this lesson at any time to practice setting up, performing, and interpreting chi-squared tests."
