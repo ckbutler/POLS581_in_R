@@ -71,7 +71,7 @@
   Hint: "Is the p-value less than 0.05?"
 
 - Class: text
-  Output: "This simply chi-squared test allows us to examine the relationship between two dichotomous variables. Our example showed that there was no significant relationship between a respondent's sex and whether or not they voted in 2008. However, we can also use the chi-squared test to examine the relationship between two ordinal variables. "
+  Output: "This simple chi-squared test allows us to examine the relationship between two dichotomous variables. Our example showed that there was no significant relationship between a respondent's sex and whether or not they voted in 2008. However, we can also use the chi-squared test to examine the relationship between two ordinal variables. "
 
 - Class: text
   Output: "An ordinal variable is a categorical variable with a meaningful ordering between the categories. Again, we've picked out two variables to use in this example. First, the independent variable, 'attend3' indicates the frequency of the respondent's church attendance. The variable categories are one (1) or 'low,' two (2) or 'medium,' and three (3) or 'high.' Second, the dependent variable, 'natsci,' indicates the respondent's opinion about the level of governmental support for scientific research. Possible categories are one (1) or 'too little,' two (2) or 'about right,' and three (3) or 'too much.' Neither of our variables need to be recoded, so we can proceed with the chi-squared test."
@@ -79,7 +79,7 @@
 - Class: cmd_question
   Output: "Remember the long command that used the 'CrossTable()' function from before? We can reuse that command with the new ordinal variables to perform a chi-squared test. Simply replace the first two inputs in the 'CrossTable()' function with the proper variable names and enter below, like so --- 'CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE'"
   CorrectAnswer: CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE
-  AnswerTests: any_of_exprs('CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE')
+  AnswerTests: any_of_exprs('CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE)')
   Hint: "Type the long command 'CrossTable(gss$natsci, gss$attend3, expected=FALSE, prop.t=FALSE, prop.chisq=FALSE, prop.r=FALSE, prop.c=TRUE, chisq=TRUE' to create the table."
 
 - Class: mult_question
@@ -92,7 +92,7 @@
 - Class: cmd_question
   Output: "Ordinal-by-ordinal chi-squared tests require additional interpretation, however. We need to calculate Kendall's tau coefficient, a statistic used to measure the relationship between two ranked variables. While we could manually calculate the statistic in base R, it is far easier to use an external library, 'Kendall.' Load the Kendall library now with 'library(Kendall).'"
   CorrectAnswer: library(Kendall)
-  AnswerTests: any_of_exprs('library(Kendall')
+  AnswerTests: any_of_exprs('library(Kendall)')
   Hint: "Type library(Kendall) to load the necessary library."
 
 - Class: cmd_question
