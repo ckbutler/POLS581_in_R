@@ -92,7 +92,7 @@
 - Class: cmd_question
   Output: "Ordinal-by-ordinal chi-squared tests require additional interpretation, however. We need to calculate Kendall's tau coefficient, a statistic used to measure the relationship between two ranked variables. While we could manually calculate the statistic in base R, it is far easier to use an external library, 'Kendall.' Load the Kendall library now with 'library(Kendall).'"
   CorrectAnswer: library(Kendall)
-  AnswerTests: any_of_exprs('library(Kendall')
+  AnswerTests: any_of_exprs('library(Kendall)')
   Hint: "Type library(Kendall) to load the necessary library."
 
 - Class: cmd_question
