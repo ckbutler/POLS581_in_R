@@ -40,9 +40,9 @@
   Hint: "Type table(gss$vote08, gss$female) to create the table."
 
 - Class: cmd_question
-  Output: "While we succeeded in creating a cross-tab, it isn't very informative, is it? Because we just recoded our variables, we know that the number '564' in the first cell corresponds to zero (0) and zero (0), or men who voted. But it's very easy to get confused about which variable the column or row corresponds to. Luckily, we can generate a more informative table using the 'gmodels' package. Note that this package is outside of base R and we must install and load it ourselves. Load the 'gmodels' package using 'library(gmodels).' [If you need to install it now, first enter 'play' mode in Swirl by typing 'play()'. Then use the 'install.packages("gmodels")' command. Finally, use the 'nxt()' command to return to the lesson.]"
+  Output: "While we succeeded in creating a cross-tab, it isn't very informative, is it? Because we just recoded our variables, we know that the number '564' in the first cell corresponds to zero (0) and zero (0), or men who voted. But it's very easy to get confused about which variable the column or row corresponds to. Luckily, we can generate a more informative table using the 'gmodels' package. Note that this package is outside of base R and we must install and load it ourselves. Load the 'gmodels' package using 'library(gmodels).' [If you need to install it now, first enter 'play' mode in Swirl by typing 'play()'. Then use the 'install.packages('gmodels')' command. Finally, use the 'nxt()' command to return to the lesson.]"
   CorrectAnswer: library(gmodels)
-  AnswerTests: any_of_exprs('library(gmodels')
+  AnswerTests: any_of_exprs('library(gmodels)')
   Hint: "Type library(gmodels) to load the necessary library."
 
 - Class: cmd_question
