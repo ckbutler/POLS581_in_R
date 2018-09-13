@@ -13,7 +13,7 @@
   Output: "Note that this lesson has automatically imported data from the 'states' dataset into a dataframe called 'states.' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
   
 - Class: cmd_question
-  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, gay_support, indicates the percentage of the US state that supports gay rights. To view the 'gay_support' variable, type 'states$gay_support' The dollar sign symbol indicates that we'd like to view the 'gay_support' variable inside the 'states' dataframe object."
+  Output: "First, we need to select variables for exploration. Again, we have already picked two for you! The independent variable, gay_support, indicates the percentage of the US state that supports gay rights. To view the 'gay_support' variable, type 'states$gay_support' The dollar sign symbol indicates that we'd like to view the 'gay_support' variable inside the 'states' dataframe object."
   CorrectAnswer: states$gay_support
   AnswerTests: any_of_exprs('states$gay_support')
   Hint: "Type states$gay_support to view the gay_support variable."
@@ -42,7 +42,7 @@
 - Class: cmd_question
   Output: "You will see a list of values ranging from 1 to 3. This isn't too descriptive, is it? We will need to make some changes to the variable before it is useful in our Ordered Logistic regression model. First, we want to turn the variable into a factor variable. This allows R to recognize each value as a discrete category, rather than a continuous value. We will store the new factor varaible in a new column in the states data frame. In the same command, we will also define the levels of the variable. We already know that the variable ranges from 1 to 3, so the levels should be 1, 2, and 3. Finally, we also want to apply descriptive labels to the levels, as the range semantically indicates low, medium, and high levels of religiosity. This will be a long command! Type 'states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))' below to create a new factor variable and store it in a new column called 'relig3_factor.'"
   CorrectAnswer: states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))
-  AnswerTests: any_of_exprs('states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))')
+  AnswerTests: any_of_exprs("states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))")
   Hint: "Type states$relig3_factor <- factor(states$Religiosity3, levels = c(1,2,3), labels = c('low', 'medium', 'high'))."
   
 - Class: text
@@ -57,7 +57,7 @@
 - Class: cmd_question
   Output: "Great! Now we're ready to create an Ordered Logistic regression model. Run an Ordered Logistic regression with the 'polr()' function. Type 'polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))' below to create a regression model for our variables of interest. Note that the dependent variable comes first, followed by a tilde ('~'), and then the independent variable. Think of this as roughly equivalent to the equation for a line, y = mx + b, where 'y' is the dependent variable, 'x' is the independent variable, and the slope, 'm', and intercept, 'b', are what the model is estimating. This function also uses the options 'Hess = TRUE,' which provides additional error correction, and 'method = c('logistic'), which tells the function to use the logstic regression method."
   CorrectAnswer: polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))
-  AnswerTests: any_of_exprs('polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))')
+  AnswerTests: any_of_exprs("polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))")
   Hint: "Type polr(states$relig3_factor ~ states$gay_support, Hess = TRUE, method = c('logistic'))."
 
 
