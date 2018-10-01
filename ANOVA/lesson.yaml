@@ -1,19 +1,19 @@
 - Class: meta
   Course: Swirl Lessons
   Lesson: ANOVA
-  Author: Colin M. Henry
+  Author: Colin M. Henry and Christopher K. Butler
   Type: Standard
   Organization: University of New Mexico
   Version: 2.4.3
 
 - Class: text
-  Output: "This lesson will show you how to set up and perform an ANOVA test. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA, or 'One Way Analysis of Variance,' test to examine the relationship between continuous dependent variables and categorical independent variables. The ANOVA compares the means of subsets of your data. It is similar to the two-sample t-test of independent groups that you learned about in the 'T-Test' lesson. In this lesson, we'll set up and perform a test using data from [?]."
+  Output: "This lesson will show you how to set up and perform an ANOVA test. From your Table of Bivariate Tests handout, you'll see that you can use the ANOVA, or 'One Way Analysis of Variance,' test to examine the relationship between continuous dependent variables and categorical independent variables. The ANOVA compares the means of subsets of your data. It is similar to the two-sample t-test of independent groups that you learned about in the 'T-Test' lesson. In this lesson, we'll set up and perform a test using data from US states."
 
 - Class: text
   Output: "Note that this lesson has automatically imported data from the 'states' dataset into a dataframe called 'states' You should see an object by that name in the upper right-hand pane in RStudio. For more information on importing data into R, please see the 'Loading Data' lesson in this course."
 
 - Class: cmd_question
-  Output: "First, we need to select variables for exploration. Again, we have alread picked two for you! The independent variable, 'region', indicates the region of the state. To view the 'region' variable, type 'states$region' The dollar sign symbol indicates that we'd like to view the 'region' variable inside the 'states' dataframe object."
+  Output: "First, we need to select variables for exploration. Again, we have already picked two for you! The independent variable, 'region', indicates the region to which the state belongs in the United States. To view the 'region' variable, type 'states$region' The dollar sign symbol indicates that we'd like to view the 'region' variable inside the 'states' dataframe object."
   CorrectAnswer: states$region
   AnswerTests: any_of_exprs('states$region')
   Hint: "Type states$region to view the states variable."
@@ -21,7 +21,7 @@
 - Class: cmd_question
   Output: "You will see a list of 50 values ranging from 1 to 4. Each number corresponds to a region: 1 to the East, 2 to the Midwest, 3 to the South, and 4 to the West. (It's a simplistic measure --- let's not quibble over where each state belongs.) Before we can begin our analysis, we need to convert the variable into a 'factor' variable with descriptive levels. This tells R that the variable has discrete categories, and attaches descriptive name to the categories. We'll store this new factor variable in a column in the dataframe called 'region_factor.' Type 'states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))' below to create the new factor variable."
   CorrectAnswer: states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))
-  AnswerTests: any_of_exprs('states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))')
+  AnswerTests: any_of_exprs("states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West'))")
   Hint: "Type states$region_factor <- factor(states$region, levels = c(1,2,3,4), labels = c('East', 'Midwest', 'South', 'West')) to create the new factor variable."
   
 - Class: text
