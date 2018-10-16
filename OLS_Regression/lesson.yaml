@@ -5,6 +5,9 @@
   Type: Standard
   Organization: University of New Mexico
   Version: 2.4.3
+  
+- Class: text
+  Output: "In order to complete this lesson, you will need to have the 'moments' package installed. If you have not done so, you can type play() to leave swirl temporarily and install the package. To resume the lesson, type nxt()."
 
 - Class: text
   Output: "This lesson will show you how to set up and perform a bivariate OLS regression. OLS regression is a type of regression analysis, a broader category of statistical techniques that are the bread-and-butter of quantitative social science. From your Table of Bivariate Tests handout, you'll see that you can use OLS regression to examine the relationships between two continuous variables. In this lesson, we'll set up and perform a continuous-by-continuous test using data from the 'states' dataset included with [?]."
@@ -109,11 +112,23 @@
   Hint: "Type hist(model$residuals) to view a histogram of the errors."
 
 - Class: mult_question
-  Output: "Are the errors (about) normally distributed?"
+  Output: "Do the errors appear to be (about) normally distributed?"
   AnswerChoices: Yes; No
   CorrectAnswer: Yes
   AnswerTests: omnitest(correctVal='Yes')
   Hint: "Compare the histogram to a normal distribution from class."
+  
+- Class: cmd_question
+  Output: "While we can look at a histogram of the errors to infer normality, we can also determine this using measures of skewness and kurtosis. Let's begin with skewness. Skewness measures departure from horizontal symmetry. In other words, if the majority of observations have errors on one side of the distribution, we can consider the distribution skewed rather than normal. Using the 'moments' package (loaded for you), you can calculate this statistic. Type 'skewness(model$residuals)' to do so."
+  CorrectAnswer: skewness(model$residuals)
+  AnswerTests: any_of_exprs('skewness(model$residuals)')
+  Hint: "Type skewness(model$residuals) to calculate skewness."
+
+- Class: cmd_question
+  Output: "Kurtosis looks at the peakedness of the distribution. A normal distribution has a kurtosis of 3. Values deviating from 3 have higher variance, likely as a result of outliers, which influences your findings. Again using the 'moments' package, you can calculate kurtosis yourself. Type 'kurtosis(model$residuals)' to do so."
+  CorrectAnswer: kurtosis(model$residuals)
+  AnswerTests: any_of_exprs('kurtosis(model$residuals)')
+  Hint: Type kurtosis(model$residuals) to calculate kurtosis."
 
 - Class: text
   Output: "With the errors looking about normally distributed, we can say with some confidence that our model reveals a direct, or positive, relationship between the percentage of independents and the percentage of support for gay rights in a state. Moreover, we can say that for every half-percent increase in independent voters, support for gay rights increases by 1%. In this lesson, you learned how to evaluate variables for use in an OLS regression, set up the regression model, and explore post-estimation diagnostics. Please feel free to revisit this lesson at any time to practice setting up, performing, and interpreting OLS regression models."
