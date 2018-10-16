@@ -123,12 +123,26 @@
   CorrectAnswer: skewness(model$residuals)
   AnswerTests: any_of_exprs('skewness(model$residuals)')
   Hint: "Type skewness(model$residuals) to calculate skewness."
+  
+- Class: mult_question
+  Output: "After calculating skewness, you should receive a value of -0.28. What does this value mean? For ease of interpretation, think of it this way -- if the value is between -0.5 and 0.5, then the distribution is largely symmetric. If the value is between either -0.5 and -1 or 0.5 and 1, then the distribution is moderately skewed. If the value is less than -1 or greater than 1, then the distribution is highly skewed. The sign of the value indicates what direction the skewness goes. Is this distribution skewed?"
+  AnswerChoices: Yes; No
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal='No')
+  Hint: "Is the value between -0.5 and 0.5? If so, then it is not skewed."
 
 - Class: cmd_question
   Output: "Kurtosis looks at the peakedness of the distribution. A normal distribution has a kurtosis of 3. Values deviating from 3 have higher variance, likely as a result of outliers, which influences your findings. Again using the 'moments' package, you can calculate kurtosis yourself. Type 'kurtosis(model$residuals)' to do so."
   CorrectAnswer: kurtosis(model$residuals)
   AnswerTests: any_of_exprs('kurtosis(model$residuals)')
-  Hint: Type kurtosis(model$residuals) to calculate kurtosis."
+  Hint: "Type kurtosis(model$residuals) to calculate kurtosis."
+  
+- Class: mult_question
+  Output: "After calculating kurtosis, you should receive the value 3.22. What does this value mean? Well, we know that a normal distribution has a kurtosis of 3. If the calculated value deviates too far from that number (+2 or -2), then we have excess kurtosis. If the calculated value is between 1 and 5, then we cannot reach any conclusions about the kurtosis, aside from that it's not perfectly normal. Higher values of this statistic have more peakedness. Do the residuals of our model have excess kurtosis?"
+  AnswerChoices: Yes; No
+  CorrectAnswer: No
+  AnswerTests: omnitest(correctVal='No')
+  Hint: "Is the value between 1 and 5? If so, then there is not excess kurtosis."
 
 - Class: text
   Output: "With the errors looking about normally distributed, we can say with some confidence that our model reveals a direct, or positive, relationship between the percentage of independents and the percentage of support for gay rights in a state. Moreover, we can say that for every half-percent increase in independent voters, support for gay rights increases by 1%. In this lesson, you learned how to evaluate variables for use in an OLS regression, set up the regression model, and explore post-estimation diagnostics. Please feel free to revisit this lesson at any time to practice setting up, performing, and interpreting OLS regression models."
